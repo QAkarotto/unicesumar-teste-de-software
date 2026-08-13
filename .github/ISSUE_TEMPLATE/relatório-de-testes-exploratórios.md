@@ -32,7 +32,7 @@ assignees: ''
 
 ## Estratégia
 
-<!-- Qual estratégia (heuristíca, hipotese, ) foi utilizada? Como a exploração foi conduzida? -->
+<!-- Qual estratégia (heuristíca, hipotese, persona, etc) foi utilizada? Como a exploração foi conduzida? -->
 
 
 
