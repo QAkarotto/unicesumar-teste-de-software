@@ -32,9 +32,9 @@ assignees: ''
 
 ## Estratégia
 
-<!-- Como a exploração foi conduzida? Quais caminhos, cenários ou heurísticas foram utilizados? -->
+<!-- Qual estratégia (heuristíca, hipotese, ) foi utilizada? Como a exploração foi conduzida? -->
 
-**Heurística:** CHIQUE
+
 
 ## Achados
 
