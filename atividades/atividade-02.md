@@ -1,4 +1,4 @@
-# Atividade 01: Adicione seu nome na lista de alunos do Manifesto Oficial do `README` do repositório
+#Atividade 02: Adicione seu nome na lista de alunos do Manifesto Oficial do `README` do repositório
 
 ## Objetivo
 
