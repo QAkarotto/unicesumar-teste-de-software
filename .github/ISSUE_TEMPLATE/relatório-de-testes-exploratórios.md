@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-# Sessão #ID — Teste Exploratório
+# Sessão #ID — Teste Exploratório de UI
 
 ## Participantes
 
@@ -16,37 +16,50 @@ assignees: ''
 
 ## Charter
 
-**Explore:**
+**Explore:**  
+<!-- O que será explorado? -->
 
-**Com:**
+**Com:**  
+<!-- Qual abordagem, heurística ou técnica será utilizada? -->
 
-**Para descobrir:**
+**Para descobrir:**  
+<!-- O que você deseja aprender, questionar ou investigar? -->
 
 ## Sessão
 
-**Início:**
-**Fim:**
+**Início:**  
+**Fim:**  
 
 ## Estratégia
 
-<!-- Como a exploração foi conduzida? -->
+<!-- Como a exploração foi conduzida? Quais caminhos, cenários ou heurísticas foram utilizados? -->
+
+**Heurística:** CHIQUE
 
 ## Achados
 
-<!-- Defeitos, comportamentos suspeitos ou observações relevantes. -->
+<!-- Comportamentos observados, possíveis riscos, inconsistências ou outras descobertas relevantes. -->
 
 ## Questionamentos
 
-<!-- Comportamentos que precisam de esclarecimento. -->
+<!-- Comportamentos que precisam de esclarecimento ou que levantaram dúvidas durante a exploração. -->
 
 ## Evidências
 
-<!-- Screenshots, requests, responses etc. -->
+<!-- Screenshots, vídeos ou outras evidências relevantes. -->
 
 ## Aprendizados
 
-<!-- O que foi descoberto durante a sessão? -->
+<!-- O que foi descoberto sobre o comportamento da aplicação durante a sessão? -->
+
+## Riscos
+
+<!-- Quais possíveis impactos ou riscos foram identificados? -->
 
 ## Próximas investigações
 
-<!-- O que seria investigado com mais tempo? -->
+<!-- O que seria investigado com mais tempo ou quais perguntas ainda precisam ser respondidas? -->
+
+## Shift-Left
+
+<!-- Para uma descoberta relevante: como esse comportamento poderia ter sido descoberto, questionado ou prevenido mais cedo no ciclo de desenvolvimento? -->
