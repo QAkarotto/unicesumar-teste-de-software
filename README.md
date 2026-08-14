@@ -21,4 +21,4 @@ Repositório utilizado na disciplina de Projeto, Implementação e Teste de Soft
 Adicione seu nome, turma (ESOFT6S) e ano (2026) em ordem alfabética:
 
 1. Aluno Exemplo (ESOFT6S - 2026)
-2. 
+2. João Vitor Mello (ESOFT6S - 2026)
