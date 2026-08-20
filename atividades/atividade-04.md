@@ -1,5 +1,7 @@
 # Atividade 04: Testes Baseados em Riscos e no Código Fonte - ServeRest
 
+Individual ou em dupla.
+
 ## Objetivo
 
 Aplicar **Testes Baseados em Riscos** e **Testes Baseados no Código Fonte** para priorizar o esforço de teste e planejar cenários a partir da análise do código.
@@ -95,6 +97,7 @@ https://github.com/users/QAkarotto/projects/8
 
 A Issue deve conter:
 
+- nome dos integrantes;
 - funcionalidade escolhida;
 - tabela com os 5 riscos e seus níveis;
 - identificação dos 2 riscos priorizados;
