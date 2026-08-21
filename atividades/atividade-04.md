@@ -111,4 +111,22 @@ A Issue deve conter:
 - caminhos cobertos e caminhos não exercitados;
 - breve análise sobre o que os resultados indicam sobre a qualidade da funcionalidade.
 
+O testes podem ser documentados no formato de caso de teste:
+
+### CT-01 --- Nome do caso de teste
+
+**Origem:** Risco / Cobertura de Sentença / Cobertura de Decisão
+
+## **Pré-condições**
+
+**Passos** 1. 2. 3.
+
+## **Resultado esperado**
+
+## **Resultado obtido**
+
+**Status:** Passou / Falhou
+
+## **Evidência**
+
 **RISCO → PRIORIDADE → CÓDIGO → COBERTURA → EVIDÊNCIA → DECISÃO**
