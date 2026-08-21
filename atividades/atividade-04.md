@@ -102,7 +102,7 @@ A Issue deve conter:
 - funcionalidade escolhida;
 - tabela com os 5 riscos e seus níveis;
 - identificação dos 2 riscos priorizados;
-- testes planejados para mitigar os riscos;
+- testes planejados para mitigar os riscos. Devem estar em forma de Charters ou de Casos de teste (exemplo abaixo);
 - arquivo, função e **trecho de código escolhido**;
 - decisões ou caminhos identificados no código;
 - teste planejado para **cobertura de sentença**;
@@ -111,22 +111,21 @@ A Issue deve conter:
 - caminhos cobertos e caminhos não exercitados;
 - breve análise sobre o que os resultados indicam sobre a qualidade da funcionalidade.
 
-O testes podem ser documentados no formato de caso de teste:
-
-### CT-01 --- Nome do caso de teste
-
-**Origem:** Risco / Cobertura de Sentença / Cobertura de Decisão
-
-## **Pré-condições**
-
-**Passos** 1. 2. 3.
-
-## **Resultado esperado**
-
-## **Resultado obtido**
-
-**Status:** Passou / Falhou
-
-## **Evidência**
-
 **RISCO → PRIORIDADE → CÓDIGO → COBERTURA → EVIDÊNCIA → DECISÃO**
+
+### Exemplo de Caso de Teste
+
+**CT-01 — Usuário tenta criar um segundo carrinho**
+
+**Pré-condições:**
+- Usuário autenticado;
+- Usuário já possui um carrinho cadastrado.
+
+**Passos:**
+1. Acessar a funcionalidade de carrinho;
+2. Tentar cadastrar um novo carrinho para o mesmo usuário;
+3. Enviar a requisição.
+
+**Resultado esperado:**
+- O sistema deve rejeitar a criação do segundo carrinho;
+- A resposta deve indicar que o usuário já possui um carrinho.
