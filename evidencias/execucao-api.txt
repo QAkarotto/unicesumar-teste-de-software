@@ -1,0 +1,22 @@
+
+> unicesumar-teste-de-software@1.0.0 test:api
+> playwright test --project=api
+
+
+Running 9 tests using 2 workers
+
+(node:20156) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5200) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [api] › tests\api\serverest.spec.ts:10:5 › filtra usuários por email (748ms)
+  ok 1 [api] › tests\api\serverest.spec.ts:3:5 › cadastra usuário e persiste os dados enviados (755ms)
+  ok 4 [api] › tests\api\serverest.spec.ts:28:5 › exclui usuário e confirma que não pode mais ser consultado (890ms)
+  ok 3 [api] › tests\api\serverest.spec.ts:17:5 › atualiza usuário e confirma a persistência (903ms)
+  ok 6 [api] › tests\api\serverest.spec.ts:50:5 › rejeita cadastro com email inválido (367ms)
+  ok 7 [api] › tests\api\serverest.spec.ts:56:5 › rejeita cadastro sem nome obrigatório (381ms)
+  ok 5 [api] › tests\api\serverest.spec.ts:38:5 › impede email duplicado sem alterar o usuário original (892ms)
+  ok 9 [api] › tests\api\serverest.spec.ts:79:5 › rejeita login com senha incorreta (732ms)
+  ok 8 [api] › tests\api\serverest.spec.ts:63:5 › realiza login e consulta carrinhos enviando o token retornado (904ms)
+
+  9 passed (3.9s)
