@@ -1,6 +1,35 @@
 # unicesumar-teste-de-software
 Repositório utilizado na disciplina de Projeto, Implementação e Teste de Software do curso de Engenharia de Software da Unicesumar Ponta Grossa
 
+## Atividade 01 — 2º Bimestre: Automação de Testes de API com Playwright
+
+Projeto em TypeScript com Playwright Test, testes HTTP para a API [ServeRest](https://serverest.dev/) e projetos separados para testes de API e futuros testes Web.
+
+### Instalação
+
+```bash
+npm install
+```
+
+### Execução
+
+```bash
+# Todos os testes configurados
+npx playwright test
+
+# Somente os testes de API
+npx playwright test --project=api
+# ou
+npm run test:api
+
+# Verificar os tipos TypeScript
+npm run typecheck
+```
+
+Os testes de API usam `https://serverest.dev` por padrão. Para apontar para outra instância, defina `SERVEREST_BASE_URL`.
+
+O projeto `web` está preparado em `tests/web`. Quando houver testes Web, instale o Chromium com `npx playwright install chromium`, defina `WEB_BASE_URL` para a aplicação e execute `npm run test:web`.
+
 # Materiais
 
 - ## [Mind Map](https://app.xmind.com/share/0ThrBL00) da Disciplina
