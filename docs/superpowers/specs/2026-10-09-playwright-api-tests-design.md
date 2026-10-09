@@ -7,11 +7,12 @@ Adicionar ao repositório da disciplina uma base TypeScript com Playwright Test,
 ## Decisões
 
 - Usar `@playwright/test` e o fixture `request` para enviar requisições HTTP sem abrir navegador nos testes de API.
+- Requerer Node.js 20 ou superior, compatível com as dependências do Playwright.
 - Definir dois projetos no `playwright.config.ts`: `api`, apontando para `tests/api`, e `web`, apontando para `tests/web` com Chromium Desktop.
 - Permitir configurar `SERVEREST_BASE_URL`, mantendo `https://serverest.dev` como padrão; reservar `WEB_BASE_URL` para a futura aplicação Web.
-- Fornecer scripts npm para executar toda a suíte e filtrar por projeto.
+- Fornecer scripts npm para executar toda a suíte e filtrar por projeto; o comando Web deve falhar quando ainda não há testes para sinalizar problemas de descoberta.
 - Gerar e versionar o `package-lock.json`; ignorar dependências e saídas de execução.
-- Criar usuários com e-mails exclusivos durante os testes e removê-los no teardown para reduzir dados residuais na API compartilhada.
+- Criar usuários com e-mails exclusivos durante os testes e removê-los no teardown para reduzir dados residuais na API compartilhada; registrar o ID para limpeza antes de validar o status e a mensagem da resposta.
 
 ## Cenários de API
 
@@ -37,10 +38,12 @@ Os testes devem verificar status HTTP e conteúdo de resposta:
 ## Critérios de aceite
 
 - `npm install` instala as dependências a partir do lockfile.
+- O requisito de runtime é Node.js 20 ou superior.
 - `npx playwright test` executa os projetos configurados.
 - `npx playwright test --project=api` executa somente os testes HTTP.
 - Os sete cenários acima verificam status e dados relevantes.
 - As instruções explicam que testes Web futuros precisam do browser Chromium (`npx playwright install chromium`).
+- A execução do projeto Web sem testes deve retornar erro para evitar falso sucesso por falta de descoberta.
 - A saída da execução da suíte de API fica disponível para registrar como evidência na descrição da PR, que só será criada após autorização do usuário.
 
 ## Fora de escopo

@@ -7,6 +7,8 @@ Projeto em TypeScript com Playwright Test, testes HTTP para a API [ServeRest](ht
 
 ### Instalação
 
+Requisito: Node.js 20 ou superior.
+
 ```bash
 npm install
 ```
@@ -28,7 +30,7 @@ npm run typecheck
 
 Os testes de API usam `https://serverest.dev` por padrão. Para apontar para outra instância, defina `SERVEREST_BASE_URL`.
 
-O projeto `web` está preparado em `tests/web`. Quando houver testes Web, instale o Chromium com `npx playwright install chromium`, defina `WEB_BASE_URL` para a aplicação e execute `npm run test:web`.
+O projeto `web` está preparado em `tests/web`. Quando houver testes Web, instale o Chromium com `npx playwright install chromium`, defina `WEB_BASE_URL` para a aplicação e execute `npm run test:web`. O comando exige ao menos um teste Web para evitar que novos testes deixem de ser descobertos.
 
 # Materiais
 

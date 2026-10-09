@@ -36,12 +36,17 @@ async function registerUser(
     administrador: 'false',
   };
   const response = await request.post('/usuarios', { data: user });
+  const body: { _id?: string; message?: string } = await response.json();
+
+  if (typeof body._id === 'string' && body._id.length > 0) {
+    createdUserIds.push(body._id);
+  }
 
   expect(response.status()).toBe(201);
-  const body: { _id: string; message: string } = await response.json();
   expect(body.message).toBe('Cadastro realizado com sucesso');
-  expect(body._id).toBeTruthy();
-  createdUserIds.push(body._id);
+  if (typeof body._id !== 'string' || body._id.length === 0) {
+    throw new Error('A resposta do cadastro não contém um ID de usuário válido.');
+  }
 
   return { ...user, _id: body._id };
 }
@@ -95,9 +100,14 @@ test('bloqueia cadastro de e-mail duplicado', async ({ request, createdUserIds }
       administrador: user.administrador,
     },
   });
+  const body: { _id?: string; message?: string } = await response.json();
+
+  if (typeof body._id === 'string' && body._id.length > 0) {
+    createdUserIds.push(body._id);
+  }
 
   expect(response.status()).toBe(400);
-  expect(await response.json()).toMatchObject({
+  expect(body).toMatchObject({
     message: 'Este email já está sendo usado',
   });
 });

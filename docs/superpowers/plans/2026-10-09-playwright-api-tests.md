@@ -13,10 +13,11 @@
 ## Global Constraints
 
 - Use `@playwright/test` and the `request` fixture for HTTP requests.
+- Require Node.js 20 or newer, matching the supported runtime for the dependencies.
 - Define `api` and `web` projects rooted at `tests/api` and `tests/web`.
 - Default the API base URL to `https://serverest.dev` and allow `SERVEREST_BASE_URL` to override it.
 - Include seven scenarios that assert status and response data.
-- Support `npm install`, `npx playwright test`, and `npx playwright test --project=api`.
+- Support `npm install`, `npx playwright test`, and `npx playwright test --project=api`; keep the Web command strict while its test directory is empty.
 - Do not publish the branch or open a PR without explicit authorization.
 
 ## Review Focus
