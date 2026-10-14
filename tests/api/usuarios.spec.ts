@@ -47,3 +47,20 @@ const corpo = await cadastroDois.json();
 expect(corpo.message).toBe("Este email já está sendo usado");
 
 });
+
+test('login com dados corretos', async ({ request }) => {
+const email = `betgames${Date.now()}@qa.com.br`;
+const senha = `senha${Date.now()}`;
+
+const cadastro = await request.post('/usuarios', {data: {nome:"Jet", email:email, password:senha, administrador:"true"}});
+expect(cadastro.status()).toBe(201);
+
+const login = await request.post('/login', {data:{email:email, password:senha}});
+expect(login.status()).toBe(200);
+
+const corpo = await login.json();
+
+expect(corpo.message).toBe("Login realizado com sucesso")
+expect(corpo).toHaveProperty('authorization')
+
+})
