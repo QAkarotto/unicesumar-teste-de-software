@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { request } from 'http';
 
 //
 
@@ -19,8 +20,22 @@ expect(corpo.usuarios[0]).toHaveProperty('nome')
 
 test('cadastra usuario', async ({ request }) => {
 
+// Gera uma data para registrar como email sem precisar ficar alterando 
 const email = `beltrano${Date.now()}@qa.com.br`;
 
 const resposta = await request.post('/usuarios', {data:{nome:"Fulano", email:email, password:"teste", administrador:"true"}});
 expect(resposta.status()).toBe(201);
+const corpo = await resposta.json();
+
+expect(corpo.message).toBe("Cadastro realizado com sucesso")
+expect(corpo).toHaveProperty('_id')
+
+});
+
+//
+
+test('verifica e-mail cadastrado', async ({ request }) => {
+
+
+
 });
