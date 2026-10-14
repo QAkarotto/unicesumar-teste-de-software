@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { request } from 'http';
 
 //
 
@@ -36,6 +35,15 @@ expect(corpo).toHaveProperty('_id')
 
 test('verifica e-mail cadastrado', async ({ request }) => {
 
+const email = `belano${Date.now()}@qa.com.br`;
 
+const cadastroUm = await request.post('/usuarios', {data: {nome:"Jão", email:email, password:"teste", administrador:"true"}});
+expect(cadastroUm.status()).toBe(201);
+
+const cadastroDois = await request.post('/usuarios', {data: {nome: "Jao Jao", email:email, password:"Tetee", administrador:"true"}});
+expect(cadastroDois.status()).toBe(400);
+
+const corpo = await cadastroDois.json();
+expect(corpo.message).toBe("Este email já está sendo usado");
 
 });
