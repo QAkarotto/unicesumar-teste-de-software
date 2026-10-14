@@ -26,6 +26,7 @@ npx playwright test --project=api   # apenas API (ou: npm run test:api)
 npx playwright show-report          # relatório HTML
 ```
 
-![evidencia1.png](../../../../../Downloads/evidencia1.png)
 
-![evidencia2.png](../../../../../Downloads/evidencia2.png)
+<img width="1148" height="1058" alt="evidencia1" src="https://github.com/user-attachments/assets/cbb77500-146b-490a-bb1e-af540922cb3e" />
+
+<img width="1568" height="599" alt="evidencia2" src="https://github.com/user-attachments/assets/2e8d0b71-54f9-4893-9809-b49e52904a69" />
