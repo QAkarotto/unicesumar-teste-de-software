@@ -63,7 +63,7 @@ const corpo = await login.json();
 expect(corpo.message).toBe("Login realizado com sucesso")
 expect(corpo).toHaveProperty('authorization')
 
-})
+});
 
 
 test('login com dados incorretos', async ({ request }) => {
@@ -80,5 +80,23 @@ const corpo = await login.json();
 
 expect(corpo.message).toBe("Email e/ou senha inválidos")
 expect(corpo).not.toHaveProperty('authorization')
+
+});
+
+test('listar produtos', async ({ request }) =>{
+
+const listar = await request.get('/produtos');
+const corpo = await listar.json();
+
+expect(listar.status()).toBe(200);
+expect(corpo.produtos.length).toBe(corpo.quantidade)
+
+expect(corpo.quantidade).toBeGreaterThan(0);
+expect(corpo.produtos[0]).toHaveProperty('nome');
+expect(corpo.produtos[0]).toHaveProperty('preco');
+expect(corpo.produtos[0].preco).toBeGreaterThan(0)
+expect(corpo.produtos[0]).toHaveProperty('descricao');
+expect(corpo.produtos[0]).toHaveProperty('quantidade');
+expect(corpo.produtos[0]).toHaveProperty('_id');
 
 })
