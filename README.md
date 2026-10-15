@@ -22,3 +22,15 @@ Adicione seu nome, turma (ESOFT6S) e ano (2026) em ordem alfabética:
 
 1. Aluno Exemplo (ESOFT6S - 2026)
 2. 
+
+# Testes Automatizados (Playwright)
+
+Testes de API do [ServeRest](https://serverest.dev/) com Playwright + TypeScript, com estrutura pronta para testes Web.
+
+```bash
+npm install
+npx playwright test                 # todos os projetos
+npx playwright test --project=api   # apenas API (ou: npm run test:api)
+```
+
+Detalhes e cenários cobertos em [`tests/README.md`](tests/README.md).
