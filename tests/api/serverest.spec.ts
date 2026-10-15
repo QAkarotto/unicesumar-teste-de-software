@@ -62,7 +62,9 @@ test('POST /usuarios rejeita cadastro sem nome', async ({ request }) => {
 test('GET /usuarios/:id rejeita ID inexistente', async ({ request }) => {
   const resposta = await request.get('/usuarios/id-inexistente-123');
   expect(resposta.status()).toBe(400);
-  expect(resposta.status()).toBe(400);
+const corpo = await resposta.json();
+expect(corpo).toBeDefined();
+expect(typeof corpo).toBe('object');
 });
 
 test('POST /login rejeita credenciais inválidas', async ({ request }) => {
