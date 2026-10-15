@@ -22,3 +22,83 @@ Adicione seu nome, turma (ESOFT6S) e ano (2026) em ordem alfabética:
 
 1. Aluno Exemplo (ESOFT6S - 2026)
 2. 
+
+
+## Atividade 01 — 2º Bimestre: Automação de Testes de API com Playwright
+
+### Objetivo
+
+Automatizar testes de API utilizando Playwright e TypeScript, verificando códigos de status HTTP, estrutura das respostas, dados retornados e regras de negócio da API ServeRest.
+
+### Tecnologias utilizadas
+
+- Node.js
+- TypeScript
+- Playwright Test
+- API ServeRest: https://serverest.dev/
+
+### Estrutura dos arquivos
+
+```text
+unicesumar-teste-de-software/
+├── tests/
+│   ├── api/
+│   │   └── serverest.spec.ts
+│   └── web/
+├── playwright.config.ts
+├── tsconfig.json
+├── package.json
+├── package-lock.json
+└── .gitignore
+```
+
+### Instalação
+
+Após clonar o repositório e acessar a pasta do projeto, execute:
+
+```bash
+npm install
+```
+
+### Execução dos testes
+
+Executar todos os testes:
+
+```bash
+npx playwright test
+```
+
+Executar somente os testes da API:
+
+```bash
+npm run test:api
+```
+
+Verificar os tipos do TypeScript:
+
+```bash
+npm run typecheck
+```
+
+Abrir o relatório HTML:
+
+```bash
+npm run test:report
+```
+
+### Cenários automatizados da API
+
+1. Listagem de usuários e validação dos dados.
+2. Listagem de produtos e validação dos dados.
+3. Pesquisa de usuários inexistentes, validando o retorno de lista vazia.
+4. Tentativa de login com credenciais inválidas.
+5. Tentativa de cadastro de usuário sem os campos obrigatórios.
+6. Tentativa de cadastro de produto sem autorização.
+
+### Resultado da execução
+
+Na última execução registrada, os seis testes de API passaram. A verificação do TypeScript também foi concluída sem erros.
+
+### Evidências
+
+As capturas de tela das execuções e do relatório HTML podem ser anexadas ao Pull Request para demonstrar os resultados da atividade.
