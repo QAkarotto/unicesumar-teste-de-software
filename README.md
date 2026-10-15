@@ -22,3 +22,85 @@ Adicione seu nome, turma (ESOFT6S) e ano (2026) em ordem alfabética:
 
 1. Aluno Exemplo (ESOFT6S - 2026)
 2. 
+
+## Atividade 01 - Automação de Testes de API com Playwright
+
+Projeto de testes automatizados da API ServeRest utilizando Playwright e TypeScript.
+
+### Requisitos
+
+- Node.js e npm instalados.
+
+### Instalação
+
+```bash
+npm install
+```
+
+### Execução dos testes
+
+Executar todos os testes:
+
+```bash
+npm test
+```
+
+Executar somente os testes de API:
+
+```bash
+npm run test:api
+```
+
+Executar somente os testes Web:
+
+```bash
+npm run test:web
+```
+
+### Estrutura
+
+- `playwright.config.ts`: configuração do Playwright.
+- `tsconfig.json`: configuração do TypeScript.
+- `tests/api/`: testes automatizados da API ServeRest.
+- `tests/web/`: diretório preparado para futuros testes Web.
+
+## Atividade 01 - Automação de Testes de API com Playwright
+
+Projeto de testes automatizados da API ServeRest utilizando Playwright e TypeScript.
+
+### Requisitos
+
+- Node.js e npm instalados.
+
+### Instalação
+
+```bash
+npm install
+```
+
+### Execução dos testes
+
+Executar todos os testes:
+
+```bash
+npm test
+```
+
+Executar somente os testes de API:
+
+```bash
+npm run test:api
+```
+
+Executar somente os testes Web, quando forem adicionados:
+
+```bash
+npm run test:web
+```
+
+### Estrutura
+
+- `playwright.config.ts`: configuração do Playwright.
+- `tsconfig.json`: configuração do TypeScript.
+- `tests/api/`: testes automatizados da API ServeRest.
+- `tests/web/`: diretório reservado para futuros testes Web.
