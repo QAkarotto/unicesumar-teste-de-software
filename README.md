@@ -15,6 +15,46 @@ Repositório utilizado na disciplina de Projeto, Implementação e Teste de Soft
     - [Aulas gravadas](https://drive.google.com/drive/folders/18D9ZJ1F-pVPy0S_DndA2mLCTLe7aBtkX?usp=sharing)
     - [Mind Map utilizado no treinamento](https://app.xmind.com/share/FGhdypvt) - senha: dojodoqame
 
+# Testes automatizados com Playwright + TypeScript
+
+Projeto de testes com Playwright separado em **API** e **Web**.
+A API testada é a [ServeRest](https://serverest.dev).
+
+### Estrutura
+
+```
+tests/
+├── api/    # testes de API (usuários, login, produtos)
+└── web/    # estrutura preparada para testes Web futuros
+playwright.config.ts   # projetos "api" e "web"
+```
+
+### Instalação
+
+Pré-requisito: Node.js 18+.
+
+```bash
+npm install
+npx playwright install   # necessário apenas para os testes Web (navegadores)
+```
+
+### Execução
+
+| Objetivo | Comando |
+|---|---|
+| Todos os testes | `npx playwright test` |
+| Somente API | `npx playwright test --project=api` (ou `npm run test:api`) |
+| Somente Web | `npx playwright test --project=web` (ou `npm run test:web`) |
+| Relatório HTML | `npm run report` |
+
+A URL da API pode ser trocada com `API_URL` (padrão: `https://serverest.dev`).
+
+### Cobertura dos testes de API (12 testes)
+
+- **Usuários:** cadastro (201), consulta por _id, e-mail duplicado (400), campos obrigatórios (400), exclusão.
+- **Login:** sucesso com token Bearer (200) e senha inválida (401).
+- **Produtos:** cadastro por admin, não-admin bloqueado (403), sem token (401), nome duplicado (400), listagem.
+
 ## Manifesto Oficial
 
 ### Lista de alunos que concordam que o Professor Goku é o melhor professor do universo
