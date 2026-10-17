@@ -1,3 +1,4 @@
+
 # Automação de Testes com Playwright
 
 Testes automatizados da API ServeRest desenvolvidos em TypeScript utilizando Playwright.
@@ -32,10 +33,21 @@ npm run test:api
 
 ## Organização
 
-- `tests/api`: testes automatizados da API ServeRest.
+- `tests/api`: testes automatizados de usuários, login e produtos.
+- `tests/data/factories.ts`: geração de dados com Faker.
+- `tests/helpers/auth.ts`: autenticação e obtenção do token.
+- `tests/helpers/api.ts`: requisições reutilizáveis.
 - `tests/web`: pasta reservada para futuros testes Web.
-- `playwright.config.ts`: configuração do Playwright.
+- `playwright.config.ts`: configuração compartilhada do Playwright.
 
-Os testes verificam status HTTP, dados das respostas e regras de negócio, como o bloqueio de e-mail duplicado. Os usuários criados nos testes são identificados por e-mails únicos para evitar conflitos.
+## Melhorias realizadas
 
-Os testes de API utilizam o serviço público `https://serverest.dev/` e precisam de acesso à internet.
+- Organização dos testes por responsabilidade.
+- Geração dinâmica de usuários e produtos utilizando Faker.
+- Reutilização das funções de autenticação e requisições.
+- Testes independentes com preparação e limpeza dos dados.
+- Validação de status HTTP, respostas e regras de negócio.
+
+A suíte possui 12 testes de API, incluindo cenários válidos e inválidos.
+
+Os testes utilizam o serviço público `https://serverest.dev/` e precisam de acesso à internet.
