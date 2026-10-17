@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker';
 export function gerarUsuario(administrador = 'false') {
   return {
     nome: faker.person.fullName(),
-    email: faker.internet.email().toLowerCase(),
+    email: `aluno-${faker.string.uuid()}@exemplo.com`,
     password: faker.internet.password(),
     administrador
   };
