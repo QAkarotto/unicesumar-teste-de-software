@@ -1,0 +1,16 @@
+{
+  "name": "unicesumar-testes-playwright",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:api": "playwright test --project=api",
+    "test:web": "playwright test --project=web"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^26.6.4",
+    "typescript": "^5.9.0"
+  }
+}
