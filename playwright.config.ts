@@ -2,7 +2,10 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  reporter: 'list',
+  fullyParallel: true,
+  workers: 2,
+  timeout: 30_000,
+  reporter: [['list'], ['html', { open: 'never' }]],
   projects: [
     {
       name: 'api',
