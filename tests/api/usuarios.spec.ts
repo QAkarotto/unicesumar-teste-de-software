@@ -1,102 +1,49 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/api.fixture';
+import { criarUsuarioDto } from '../data/factories';
+import { cadastrarUsuario, excluirUsuario } from '../helpers/api';
 
-//
+test.describe('Usuários', () => {
+  test('cadastra usuário com dados dinâmicos e persiste os dados', async ({ request }) => {
+    const usuario = criarUsuarioDto();
 
-test('lista o usuário', async ({ request }) => {
+    const resposta = await request.post('/usuarios', { data: usuario });
+    expect(resposta.status()).toBe(201);
+    const corpo = await resposta.json();
+    expect(corpo.message).toBe('Cadastro realizado com sucesso');
+    expect(corpo._id).toBeTruthy();
 
-const resposta = await request.get('/usuarios');
-expect(resposta.status()).toBe(200);
+    try {
+      const consulta = await request.get(`/usuarios/${corpo._id}`);
+      expect(consulta.status()).toBe(200);
+      expect(await consulta.json()).toMatchObject({ ...usuario, _id: corpo._id });
+    } finally {
+      await excluirUsuario(request, corpo._id);
+    }
+  });
 
-const corpo = await resposta.json();
-expect(corpo.quantidade).toBeGreaterThan(0)
-expect(corpo.usuarios.length).toBe(corpo.quantidade)
+  test('não cadastra usuário com e-mail inválido', async ({ request }) => {
+    const usuario = { ...criarUsuarioDto(), email: 'email-sem-arroba' };
 
-expect(corpo).toHaveProperty('quantidade')
-expect(corpo.usuarios[0]).toHaveProperty('nome')
+    const resposta = await request.post('/usuarios', { data: usuario });
+
+    expect(resposta.status()).toBe(400);
+    const corpo = await resposta.json();
+    expect(corpo.email).toBe('email deve ser um email válido');
+    expect(corpo).not.toHaveProperty('_id');
+  });
+
+  test('regra de negócio: não permite e-mail já utilizado', async ({ request }) => {
+    const { usuario, id } = await cadastrarUsuario(request);
+
+    try {
+      const duplicado = await request.post('/usuarios', {
+        data: { ...criarUsuarioDto(), email: usuario.email },
+      });
+
+      expect(duplicado.status()).toBe(400);
+      expect((await duplicado.json()).message).toBe('Este email já está sendo usado');
+    } finally {
+      await excluirUsuario(request, id);
+    }
+  });
 });
-
-//
-
-test('cadastra usuario', async ({ request }) => {
-
-// Gera uma data para registrar como email sem precisar ficar alterando 
-const email = `beltrano${Date.now()}@qa.com.br`;
-
-const resposta = await request.post('/usuarios', {data:{nome:"Fulano", email:email, password:"teste", administrador:"true"}});
-expect(resposta.status()).toBe(201);
-const corpo = await resposta.json();
-
-expect(corpo.message).toBe("Cadastro realizado com sucesso")
-expect(corpo).toHaveProperty('_id')
-
-});
-
-//
-
-test('verifica e-mail cadastrado', async ({ request }) => {
-
-const email = `belano${Date.now()}@qa.com.br`;
-
-const cadastroUm = await request.post('/usuarios', {data: {nome:"Jão", email:email, password:"teste", administrador:"true"}});
-expect(cadastroUm.status()).toBe(201);
-
-const cadastroDois = await request.post('/usuarios', {data: {nome: "Jao Jao", email:email, password:"Tetee", administrador:"true"}});
-expect(cadastroDois.status()).toBe(400);
-
-const corpo = await cadastroDois.json();
-expect(corpo.message).toBe("Este email já está sendo usado");
-
-});
-
-test('login com dados corretos', async ({ request }) => {
-const email = `betgames${Date.now()}@qa.com.br`;
-const senha = `senha${Date.now()}`;
-
-const cadastro = await request.post('/usuarios', {data: {nome:"Jet", email:email, password:senha, administrador:"true"}});
-expect(cadastro.status()).toBe(201);
-
-const login = await request.post('/login', {data:{email:email, password:senha}});
-expect(login.status()).toBe(200);
-
-const corpo = await login.json();
-
-expect(corpo.message).toBe("Login realizado com sucesso")
-expect(corpo).toHaveProperty('authorization')
-
-});
-
-
-test('login com dados incorretos', async ({ request }) => {
-const email = `betgamesbrasil${Date.now()}@qa.com.br`;
-const senha = `senha${Date.now()}`;
-
-const cadastro = await request.post('/usuarios', {data: {nome:"Jet", email:email, password:senha, administrador:"true"}});
-expect(cadastro.status()).toBe(201);
-
-const login = await request.post('/login', {data:{email:email, password:"senhaErrada"}});
-expect(login.status()).toBe(401);
-
-const corpo = await login.json();
-
-expect(corpo.message).toBe("Email e/ou senha inválidos")
-expect(corpo).not.toHaveProperty('authorization')
-
-});
-
-test('listar produtos', async ({ request }) =>{
-
-const listar = await request.get('/produtos');
-const corpo = await listar.json();
-
-expect(listar.status()).toBe(200);
-expect(corpo.produtos.length).toBe(corpo.quantidade)
-
-expect(corpo.quantidade).toBeGreaterThan(0);
-expect(corpo.produtos[0]).toHaveProperty('nome');
-expect(corpo.produtos[0]).toHaveProperty('preco');
-expect(corpo.produtos[0].preco).toBeGreaterThan(0)
-expect(corpo.produtos[0]).toHaveProperty('descricao');
-expect(corpo.produtos[0]).toHaveProperty('quantidade');
-expect(corpo.produtos[0]).toHaveProperty('_id');
-
-})

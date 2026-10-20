@@ -8,6 +8,7 @@
     "test:web": "playwright test --project=web"
   },
   "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
     "@playwright/test": "^1.43.0",
     "@types/node": "^20.0.0",
     "typescript": "^5.2.2"
