@@ -1,44 +1,24 @@
-\# Testes Automatizados com Playwright - ServeRest
+# Testes Automatizados com Playwright - ServeRest
 
+Projeto desenvolvido para a disciplina de Projeto, Implementação e Teste de Software do curso de Engenharia de Software da Unicesumar.
 
+A aplicação utiliza **Playwright com TypeScript** para execução de testes automatizados de API utilizando a API pública **ServeRest**.
 
-Projeto desenvolvido para a disciplina de Projeto, Implementação e Teste de Software da Unicesumar.
+---
 
+## Tecnologias utilizadas
 
+- Node.js
+- TypeScript
+- Playwright Test
+- Faker.js
+- ServeRest API
 
-A aplicação utiliza o Playwright com TypeScript para execução de testes automatizados de API utilizando a API pública ServeRest.
+---
 
+## Instalação
 
+Clone o repositório:
 
-\## Tecnologias utilizadas
-
-
-
-\- Node.js
-
-\- TypeScript
-
-\- Playwright Test
-
-\- ServeRest API
-
-
-
-\## Estrutura do projeto
-
-tests/
-
-├── api/
-
-│   ├── usuarios.spec.ts
-
-│   ├── login.spec.ts
-
-│   └── produtos.spec.ts
-
-│
-
-└── web/
-
-
-
+```bash
+git clone <url-do-repositorio>

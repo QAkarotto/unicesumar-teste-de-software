@@ -4,9 +4,9 @@
   "description": "Repositório utilizado na disciplina de Projeto, Implementação e Teste de Software do curso de Engenharia de Software da Unicesumar Ponta Grossa",
   "main": "index.js",
   "scripts": {
-  "test": "playwright test",
-  "test:api": "playwright test tests/api"
-},
+    "test": "playwright test",
+    "test:api": "playwright test tests/api"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/QAkarotto/unicesumar-teste-de-software.git"
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/QAkarotto/unicesumar-teste-de-software#readme",
   "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
     "@playwright/test": "^1.64.0",
     "ts-node": "^10.9.2",
     "typescript": "^7.0.2"

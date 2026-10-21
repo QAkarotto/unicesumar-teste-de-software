@@ -1,64 +1,117 @@
 import { test, expect } from '@playwright/test';
+import { autenticarUsuario } from '../helpers/auth';
+import { criarProduto } from '../data/factories';
+
 
 
 test('deve criar produto com usuário autenticado', async ({ request }) => {
 
-  const email = `produto${Date.now()}@teste.com`;
 
-  // Criar usuário administrador
-  await request.post('/usuarios', {
-    data: {
-      nome: 'Administrador Produto',
-      email,
-      password: '123456',
-      administrador: 'true'
-    }
-  });
+    const { token } = await autenticarUsuario(request);
 
 
-  // Login para obter token
-  const login = await request.post('/login', {
-    data: {
-      email,
-      password: '123456'
-    }
-  });
+    const produtoDados = criarProduto();
 
 
-  expect(login.status()).toBe(200);
 
-  const corpoLogin = await login.json();
-
-  const token = corpoLogin.authorization;
-
-  expect(token).toBeTruthy();
+    const respostaProduto = await request.post('/produtos', {
 
 
-  // Criar produto autenticado
-  const produto = await request.post('/produtos', {
+        headers: {
 
-    headers: {
-      Authorization: token
-    },
+            Authorization: token
 
-    data: {
-      nome: `Produto Teste ${Date.now()}`,
-      preco: 100,
-      descricao: 'Produto criado pelo teste automatizado',
-      quantidade: 10
-    }
-
-  });
+        },
 
 
-  expect(produto.status()).toBe(201);
+        data: produtoDados
 
 
-  const corpoProduto = await produto.json();
+    });
 
-  expect(corpoProduto.message)
-    .toBe('Cadastro realizado com sucesso');
 
-  expect(corpoProduto._id).toBeTruthy();
+
+    expect(respostaProduto.status()).toBe(201);
+
+
+
+    const corpoProduto = await respostaProduto.json();
+
+
+
+    expect(corpoProduto.message)
+        .toBe('Cadastro realizado com sucesso');
+
+
+
+    expect(corpoProduto._id)
+        .toBeTruthy();
+
+
+
+    const idProduto = corpoProduto._id;
+
+
+
+    const consultaProduto = await request.get(
+        `/produtos/${idProduto}`
+    );
+
+
+
+    expect(consultaProduto.status())
+        .toBe(200);
+
+
+
+    const produtoSalvo = await consultaProduto.json();
+
+
+
+    expect(produtoSalvo.nome)
+        .toBe(produtoDados.nome);
+
+
+
+    expect(produtoSalvo.preco)
+        .toBe(produtoDados.preco);
+
+
+});
+test('não deve cadastrar produto com preço inválido', async ({ request }) => {
+
+
+    const { token } = await autenticarUsuario(request);
+
+
+
+    const resposta = await request.post('/produtos', {
+
+        headers: {
+
+            Authorization: token
+
+        },
+
+        data: {
+
+            nome: 'Produto preço inválido',
+
+            preco: -10,
+
+            descricao: 'Produto inválido',
+
+            quantidade: 10
+
+        }
+
+    });
+
+
+
+    expect(resposta.status())
+        .toBe(400);
+
+
 
 });
