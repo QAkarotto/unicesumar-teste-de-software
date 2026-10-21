@@ -25,7 +25,7 @@ test.describe('Gerenciamento de Produtos', () => {
 
     expect(response.status()).toBe(401);
     const body = await response.json();
-    expect(body.message).toBe('Token de acesso ausente, expirado, inválido ou usuário do token não existe mais');
+    expect(body.message).toBe('Token de acesso ausente, inválido, expirado ou usuário do token não existe mais');
   });
 
   test('deve criar um produto, consultá-lo pelo ID e validar os dados persistidos', async ({ request, authToken }) => {

@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/QAkarotto/unicesumar-teste-de-software#readme",
   "devDependencies": {
-    "@faker-js/faker": "^10.6.0",
+    "@faker-js/faker": "^8.4.1",
     "@playwright/test": "^1.64.0",
     "typescript": "^7.0.2"
   }

@@ -9,7 +9,7 @@ export const createUserFactory = () => ({
 
 export const createProductFactory = () => ({
   nome: faker.commerce.productName() + ' ' + faker.string.alphanumeric(4),
-  preco: Number(faker.commerce.price({ min: 10, max: 500 })),
+  preco: Math.floor(Number(faker.commerce.price({ min: 10, max: 500 }))),
   descricao: faker.commerce.productDescription(),
   quantidade: faker.number.int({ min: 1, max: 100 }),
 });
