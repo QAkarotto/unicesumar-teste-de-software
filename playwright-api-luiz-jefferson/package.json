@@ -1,0 +1,5 @@
+{
+  "name": "atividade02-playwright-api", "version": "1.0.0", "private": true,
+  "scripts": {"test": "playwright test", "test:api": "playwright test tests/api", "test:api:report": "playwright test tests/api --reporter=html", "test:list": "playwright test --list"},
+  "devDependencies": {"@faker-js/faker": "^9.9.0", "@playwright/test": "^1.55.0", "typescript": "^5.9.2"}
+}
