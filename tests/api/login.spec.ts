@@ -1,41 +1,34 @@
-import { test, expect } from '@playwright/test';
-import { criarUsuario, excluirUsuario, gerarUsuario } from './helpers/serverest';
+import { test, expect } from '../fixtures/api.fixture';
+import { realizarLogin } from '../helpers/auth';
+import { gerarUsuario } from '../data/factories';
 
 test.describe('API ServeRest - Login', () => {
-  const usuario = gerarUsuario();
-  let id: string;
+  test('autentica com dados válidos e retorna token Bearer', async ({ request, usuario }) => {
+    const resp = await realizarLogin(request, usuario.usuario);
 
-  test.beforeAll(async ({ playwright }) => {
-    const ctx = await playwright.request.newContext({ baseURL: process.env.API_URL ?? 'https://serverest.dev' });
-    id = await criarUsuario(ctx, usuario);
-    await ctx.dispose();
-  });
-
-  test.afterAll(async ({ playwright }) => {
-    const ctx = await playwright.request.newContext({ baseURL: process.env.API_URL ?? 'https://serverest.dev' });
-    await excluirUsuario(ctx, id);
-    await ctx.dispose();
-  });
-
-  test('deve realizar login com credenciais válidas e retornar token Bearer', async ({ request }) => {
-    const res = await request.post('/login', {
-      data: { email: usuario.email, password: usuario.password },
-    });
-    const body = await res.json();
-
-    expect(res.status()).toBe(200);
+    expect(resp.status()).toBe(200);
+    const body = await resp.json();
     expect(body.message).toBe('Login realizado com sucesso');
     expect(body.authorization).toMatch(/^Bearer .+/);
   });
 
-  test('cenário inválido: não deve logar com senha incorreta', async ({ request }) => {
-    const res = await request.post('/login', {
-      data: { email: usuario.email, password: 'senhaErrada' },
+  test('rejeita senha incorreta e não retorna token', async ({ request, usuario }) => {
+    const resp = await realizarLogin(request, {
+      email: usuario.usuario.email,
+      password: `${usuario.usuario.password}-errada`,
     });
-    const body = await res.json();
 
-    expect(res.status()).toBe(401);
+    expect(resp.status()).toBe(401);
+    const body = await resp.json();
     expect(body.message).toBe('Email e/ou senha inválidos');
     expect(body.authorization).toBeUndefined();
+  });
+
+  test('rejeita e-mail não cadastrado', async ({ request }) => {
+    const { email, password } = gerarUsuario();
+    const resp = await realizarLogin(request, { email, password });
+
+    expect(resp.status()).toBe(401);
+    expect((await resp.json()).message).toBe('Email e/ou senha inválidos');
   });
 });

@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
+// URLs centralizadas aqui. Os testes usam apenas caminhos relativos ('/usuarios', '/login'...).
 const API_URL = process.env.API_URL ?? 'https://serverest.dev';
 const WEB_URL = process.env.WEB_URL ?? 'https://front.serverest.dev';
 
@@ -9,6 +10,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: [['list'], ['html', { open: 'never' }]],
   timeout: 30_000,
+  expect: { timeout: 5_000 },
 
   projects: [
     {
