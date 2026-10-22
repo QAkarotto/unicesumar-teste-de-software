@@ -1,87 +1,81 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/api.fixture';
+import { gerarProduto } from '../data/factories';
 import {
-  criarUsuario, excluirUsuario, fazerLogin, gerarProduto, gerarUsuario, Usuario,
-} from './helpers/serverest';
+  atualizarProduto,
+  buscarProduto,
+  cadastrarProduto,
+  excluirProduto,
+} from '../helpers/api';
 
 test.describe('API ServeRest - Produtos', () => {
-  const admin: Usuario = gerarUsuario(true);
-  const comum: Usuario = gerarUsuario(false);
-  let idAdmin: string;
-  let idComum: string;
-  let tokenAdmin: string;
-  let tokenComum: string;
+  test('exige autenticação para cadastrar produto', async ({ request }) => {
+    const resp = await request.post('/produtos', { data: gerarProduto() });
 
-  test.beforeAll(async ({ playwright }) => {
-    const ctx = await playwright.request.newContext({ baseURL: process.env.API_URL ?? 'https://serverest.dev' });
-    idAdmin = await criarUsuario(ctx, admin);
-    idComum = await criarUsuario(ctx, comum);
-    tokenAdmin = await fazerLogin(ctx, admin);
-    tokenComum = await fazerLogin(ctx, comum);
-    await ctx.dispose();
+    expect(resp.status()).toBe(401);
+    expect((await resp.json()).message).toContain('Token de acesso ausente');
   });
 
-  test.afterAll(async ({ playwright }) => {
-    const ctx = await playwright.request.newContext({ baseURL: process.env.API_URL ?? 'https://serverest.dev' });
-    await excluirUsuario(ctx, idAdmin);
-    await excluirUsuario(ctx, idComum);
-    await ctx.dispose();
+  test('regra de negócio: usuário não administrador não cadastra produto', async ({
+    request,
+    comum,
+  }) => {
+    const resp = await cadastrarProduto(request, comum.token, gerarProduto());
+
+    expect(resp.status()).toBe(403);
+    expect((await resp.json()).message).toBe('Rota exclusiva para administradores');
   });
 
-  test('administrador deve cadastrar produto e consultá-lo em seguida', async ({ request }) => {
+  test('admin cadastra produto e os dados ficam persistidos', async ({ request, admin }) => {
     const produto = gerarProduto();
 
-    const criar = await request.post('/produtos', {
-      data: produto,
-      headers: { Authorization: tokenAdmin },
-    });
-    const criado = await criar.json();
+    const resp = await cadastrarProduto(request, admin.token, produto);
+    expect(resp.status()).toBe(201);
+    const body = await resp.json();
+    expect(body.message).toBe('Cadastro realizado com sucesso');
+    expect(body._id).toBeTruthy();
 
-    expect(criar.status()).toBe(201);
-    expect(criado.message).toBe('Cadastro realizado com sucesso');
-    expect(criado._id).toEqual(expect.any(String));
-
-    const consulta = await request.get(`/produtos/${criado._id}`);
-    const body = await consulta.json();
-
-    expect(consulta.status()).toBe(200);
-    expect(body).toMatchObject({ ...produto, _id: criado._id });
-
-    await request.delete(`/produtos/${criado._id}`, { headers: { Authorization: tokenAdmin } });
+    try {
+      const consulta = await buscarProduto(request, body._id);
+      expect(consulta.status()).toBe(200);
+      expect(await consulta.json()).toMatchObject({ ...produto, _id: body._id });
+    } finally {
+      await excluirProduto(request, admin.token, body._id);
+    }
   });
 
-  test('regra de negócio: usuário não administrador não pode cadastrar produto', async ({ request }) => {
-    const res = await request.post('/produtos', {
-      data: gerarProduto(),
-      headers: { Authorization: tokenComum },
-    });
-    const body = await res.json();
+  test('não cadastra produto com preço inválido', async ({ request, admin }) => {
+    const resp = await cadastrarProduto(request, admin.token, gerarProduto({ preco: -10 }));
 
-    expect(res.status()).toBe(403);
-    expect(body.message).toBe('Rota exclusiva para administradores');
+    expect(resp.status()).toBe(400);
+    expect((await resp.json()).preco).toMatch(/preco/);
   });
 
-  test('cenário inválido: não deve cadastrar produto sem token de autenticação', async ({ request }) => {
-    const res = await request.post('/produtos', { data: gerarProduto() });
-    const body = await res.json();
+  test('regra de negócio: não permite nome de produto duplicado', async ({
+    request,
+    admin,
+    criarProduto,
+  }) => {
+    const existente = await criarProduto();
 
-    expect(res.status()).toBe(401);
-    expect(body.message).toContain('Token de acesso ausente');
+    const resp = await cadastrarProduto(request, admin.token, gerarProduto({ nome: existente.nome }));
+
+    expect(resp.status()).toBe(400);
+    expect((await resp.json()).message).toBe('Já existe produto com esse nome');
   });
 
-  test('regra de negócio: não deve permitir dois produtos com o mesmo nome', async ({ request }) => {
-    const produto = gerarProduto();
-    const headers = { Authorization: tokenAdmin };
+  test('atualiza produto e o estado final reflete a alteração', async ({
+    request,
+    admin,
+    criarProduto,
+  }) => {
+    const original = await criarProduto();
+    const novo = gerarProduto();
 
-    const primeiro = await request.post('/produtos', { data: produto, headers });
-    expect(primeiro.status()).toBe(201);
-    const { _id } = await primeiro.json();
+    const resp = await atualizarProduto(request, admin.token, original.id, novo);
+    expect(resp.status()).toBe(200);
+    expect((await resp.json()).message).toBe('Registro alterado com sucesso');
 
-    const duplicado = await request.post('/produtos', { data: produto, headers });
-    const body = await duplicado.json();
-
-    expect(duplicado.status()).toBe(400);
-    expect(body.message).toBe('Já existe produto com esse nome');
-
-    await request.delete(`/produtos/${_id}`, { headers });
+    const consulta = await buscarProduto(request, original.id);
+    expect(await consulta.json()).toMatchObject({ ...novo, _id: original.id });
   });
 });
