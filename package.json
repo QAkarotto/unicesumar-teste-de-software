@@ -1,0 +1,19 @@
+{
+  "name": "unicesumar-teste-de-software",
+  "version": "1.0.0",
+  "description": "Testes automatizados com Playwright (API ServeRest e estrutura para testes Web)",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:api": "playwright test tests/api",
+    "test:web": "playwright test --project=web",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}
