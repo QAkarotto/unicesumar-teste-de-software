@@ -1,24 +1,126 @@
-# unicesumar-teste-de-software
-Repositório utilizado na disciplina de Projeto, Implementação e Teste de Software do curso de Engenharia de Software da Unicesumar Ponta Grossa
 
-# Materiais
+# Automação de Testes de API com Playwright
 
-- ## [Mind Map](https://app.xmind.com/share/0ThrBL00) da Disciplina
+Projeto acadêmico de automação de testes da API [ServeRest](https://serverest.dev), desenvolvido com Playwright Test e TypeScript.
 
-# Materiais Complementares
-- ## Curso de Git e GitHub do Goku
-    - [Instruções para configuração de ambiente e atividades das aulas](https://booming-blouse-e16.notion.site/390cf9ad8d508083ad3de85713c19a4a?v=390cf9ad8d5080349a8b000ccb843083&pvs=143)
-    - [Aulas gravadas](https://drive.google.com/drive/folders/1jcjCtkjueHFcE28LDyLnI9Dx-F3WBIlF?usp=sharing)
-    - [Formulário para ter acesso ao repositório do curso](https://docs.google.com/forms/d/e/1FAIpQLSetBGH_UzZEZFoJuQERJhLkpFImu__nDS-dW8UZHjtJruDnbw/viewform?usp=sharing&ouid=115907476640584517407)
+## Tecnologias utilizadas
 
-- ## Curso de Testes de API do Goku
-    - [Aulas gravadas](https://drive.google.com/drive/folders/18D9ZJ1F-pVPy0S_DndA2mLCTLe7aBtkX?usp=sharing)
-    - [Mind Map utilizado no treinamento](https://app.xmind.com/share/FGhdypvt) - senha: dojodoqame
+- Node.js e npm
+- TypeScript
+- Playwright Test
+- Faker.js para geração de dados dinâmicos
+- ServeRest API
 
-## Manifesto Oficial
+## Estrutura do projeto
 
-### Lista de alunos que concordam que o Professor Goku é o melhor professor do universo
-Adicione seu nome, turma (ESOFT6S) e ano (2026) em ordem alfabética:
+```text
+tests/
+├── api/
+│   ├── login.spec.ts
+│   ├── produtos.spec.ts
+│   └── usuarios.spec.ts
+├── data/
+│   └── factories.ts
+├── fixtures/
+├── helpers/
+│   └── api.ts
+└── web/
+playwright.config.ts
+tsconfig.json
+package.json
+```
 
-1. Aluno Exemplo (ESOFT6S - 2026)
-2. 
+- `tests/api`: testes organizados por funcionalidade.
+- `tests/data`: fábricas de dados dinâmicos para usuários e produtos.
+- `tests/helpers`: funções reutilizáveis para cadastro e autenticação.
+- `tests/fixtures`: reservado para fixtures compartilhadas.
+- `tests/web`: reservado para futuros testes de interface.
+
+## Pré-requisitos
+
+- Node.js e npm instalados.
+- Acesso à internet para utilizar a API pública ServeRest.
+
+## Instalação
+
+Clone o repositório, acesse a pasta do projeto e instale as dependências:
+
+```bash
+npm install
+```
+
+## Execução dos testes
+
+Executar todos os testes:
+
+```bash
+npm test
+```
+
+Executar somente os testes de API:
+
+```bash
+npm run test:api
+```
+
+Alternativamente:
+
+```bash
+npx playwright test --project=api
+```
+
+Verificar os testes encontrados sem executá-los:
+
+```bash
+npx playwright test --project=api --list
+```
+
+Verificar os tipos TypeScript:
+
+```bash
+npx tsc --noEmit
+```
+
+## Cenários automatizados
+
+A suíte contempla nove testes de API, organizados por responsabilidade:
+
+### Usuários
+- Listagem de usuários e validação da resposta.
+- Cadastro e consulta dos dados persistidos.
+- Rejeição de cadastro com e-mail duplicado.
+- Rejeição de cadastro com campos inválidos.
+
+### Login
+- Autenticação com credenciais válidas e validação do token.
+- Rejeição de login com credenciais inválidas.
+
+### Produtos
+- Listagem de produtos e validação da resposta.
+- Cadastro autenticado e consulta dos dados persistidos.
+- Rejeição da criação de produto sem autenticação.
+
+Os testes verificam status HTTP, mensagens, propriedades das respostas e, quando aplicável, os dados persistidos após as operações.
+
+## Melhorias realizadas
+
+- Centralização da configuração do Playwright.
+- Separação dos testes por funcionalidade.
+- Criação de funções auxiliares reutilizáveis para cadastro e login.
+- Geração de dados dinâmicos com Faker.js.
+- Validação dos dados retornados e persistidos pela API.
+- Verificação de regras de negócio e cenários negativos.
+- Organização da estrutura para futura expansão dos testes Web.
+
+## Configuração da URL da API
+
+Por padrão, os testes utilizam `https://serverest.dev`.
+
+Para utilizar outra URL, defina a variável de ambiente `SERVEREST_URL`.
+
+No PowerShell:
+
+```powershell
+$env:SERVEREST_URL = "https://serverest.dev"
+npm run test:api
+```
