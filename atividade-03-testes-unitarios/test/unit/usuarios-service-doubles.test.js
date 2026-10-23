@@ -89,13 +89,19 @@ describe('usuarios-service - Test Doubles', () => {
 
   it('deve propagar erro ao cadastrar usuario', async () => {
     sinon.stub(datastore, 'insert').rejects(new Error('Erro no cadastro'))
+   
+    let erroRecebido
 
     try {
       await usuariosService.createUser({ nome: 'Teste' })
-      throw new Error('Era esperado um erro no cadastro')
+      
     } catch (erro) {
-      expect(erro.message).to.equal('Erro no cadastro')
+      erroRecebido = erro
+      
     }
+      expect(erroRecebido).to.be.instanceOf(Error)  
+      expect(erroRecebido.message).to.equal('Erro no cadastro')
+  
   })
 
   it('deve excluir usuario pelo ID', async () => {
