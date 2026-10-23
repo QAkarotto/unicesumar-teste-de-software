@@ -1,0 +1,19 @@
+
+{
+  "name": "atividade-03-testes-unitarios",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test:unit": "nyc --report-dir ./coverage-unit mocha --config test/unit/.mocharc.js"
+  },
+  "dependencies": {
+    "nedb-promises": "^6.2.3",
+    "escape-string-regexp": "^5.0.0"
+  },
+  "devDependencies": {
+    "chai": "^6.2.2",
+    "mocha": "^11.7.5",
+    "nyc": "^17.1.0",
+    "sinon": "^21.0.1"
+  }
+}
