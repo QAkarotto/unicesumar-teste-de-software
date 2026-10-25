@@ -101,5 +101,92 @@ describe('Testes unitários do controller de produtos', function () {
         expect(existeProdutoStub.firstCall.args[0]).to.deep.equal({ nome: 'Fone Bluetooth' })
     })
 
+    it('7. deve impedir a exclusão quando o produto pertence a um carrinho', async function () {
+        const carrinho = { _id: 'carrinho0000001' }
+        const existeNoCarrinhoStub = sinon.stub(carrinhosService, 'existeCarrinhoComProduto').resolves(carrinho)
+        const deleteStub = sinon.stub(produtosService, 'deleteById')
+        const req = { params: { id: 'produto00000001' } }
+        const res = criarResponseMock()
 
+        await produtosController.delete(req, res)
+
+        expect(existeNoCarrinhoStub.calledOnceWithExactly(req.params.id)).to.equal(true)
+        expect(res.status.calledOnceWithExactly(400)).to.equal(true)
+        expect(res.send.calledOnceWithExactly({ message: constant.DELETE_PRODUCT_WITH_CART, idCarrinhos: [carrinho._id] })).to.equal(true)
+        expect(deleteStub.called).to.equal(false)
+    })
+
+    it('8. deve excluir produto quando ele não está em carrinho', async function () {
+        sinon.stub(carrinhosService, 'existeCarrinhoComProduto').resolves(null)
+        const deleteMock = sinon.mock(produtosService)
+        deleteMock.expects('deleteById').once().withExactArgs('produto00000001').returns(Promise.resolve(1))
+        const req = { params: { id: 'produto00000001' } }
+        const res = criarResponseMock()
+    
+        await produtosController.delete(req, res)
+    
+        deleteMock.verify()
+        expect(res.status.calledOnceWithExactly(200)).to.equal(true)
+        expect(res.send.calledOnceWithExactly({ message: constant.DELETE_SUCCESS })).to.equal(true)
+    })
+
+    it('9. deve informar que nenhum produto foi excluído quando o ID não existe', async function () {
+        sinon.stub(carrinhosService, 'existeCarrinhoComProduto').resolves(null)
+        sinon.stub(produtosService, 'deleteById').resolves(0)
+        const req = { params: { id: 'idInexistente123' } }
+        const res = criarResponseMock()
+    
+        await produtosController.delete(req, res)
+    
+        expect(res.status.calledOnceWithExactly(200)).to.equal(true)
+        expect(res.send.calledOnceWithExactly({ message: constant.DELETE_NONE })).to.equal(true)
+    })
+
+    it('10. deve atualizar produto existente com sucesso', async function () {
+        sinon.stub(produtosService, 'existeProduto').resolves(null)
+        const updateStub = sinon.stub(produtosService, 'createOrUpdateById').resolves({ _id: 'produto00000001' })
+        const req = {
+        params: { id: 'produto00000001' },
+        body: { nome: '  Teclado novo  ', preco: 300, descricao: 'Atualizado', quantidade: 12 }
+        }
+        const res = criarResponseMock()
+    
+        await produtosController.put(req, res)
+    
+        expect(updateStub.calledOnceWithExactly(req.params.id, req.body)).to.equal(true)
+        expect(res.status.calledOnceWithExactly(200)).to.equal(true)
+        expect(res.json.calledOnceWithExactly({ message: constant.PUT_SUCCESS })).to.equal(true)
+    })
+
+    it('11. não deve atualizar produto para um nome já utilizado por outro produto', async function () {
+        sinon.stub(produtosService, 'existeProduto').resolves({ _id: 'outroProduto0001', nome: 'Mouse' })
+        const updateStub = sinon.stub(produtosService, 'createOrUpdateById')
+        const req = {
+          params: { id: 'produto00000001' },
+          body: { nome: ' Mouse ', preco: 80, descricao: 'Mouse', quantidade: 5 }
+        }
+        const res = criarResponseMock()
+    
+        await produtosController.put(req, res)
+    
+        expect(res.status.calledOnceWithExactly(400)).to.equal(true)
+        expect(res.json.calledOnceWithExactly({ message: constant.NAME_ALREADY_USED })).to.equal(true)
+        expect(updateStub.called).to.equal(false)
+    })
+
+    it('12. deve cadastrar um novo produto quando o ID enviado ainda não existe', async function () {
+        sinon.stub(produtosService, 'existeProduto').resolves(null)
+        const novoProduto = { _id: 'novoProduto00001' }
+        sinon.stub(produtosService, 'createOrUpdateById').resolves(novoProduto)
+        const req = {
+          params: { id: 'produtoNaoExiste01' },
+          body: { nome: '  Monitor  ', preco: 700, descricao: 'Monitor', quantidade: 2 }
+        }
+        const res = criarResponseMock()
+    
+        await produtosController.put(req, res)
+    
+        expect(res.status.calledOnceWithExactly(201)).to.equal(true)
+        expect(res.json.calledOnceWithExactly({ message: constant.POST_SUCCESS, _id: novoProduto._id })).to.equal(true)
+    })
 })
