@@ -1,6 +1,48 @@
 # unicesumar-teste-de-software
 Repositório utilizado na disciplina de Projeto, Implementação e Teste de Software do curso de Engenharia de Software da Unicesumar Ponta Grossa
 
+## Atividade 02 — Suíte de testes de API
+
+Evolução dos seis cenários da Atividade 01 ([PR #205](https://github.com/QAkarotto/unicesumar-teste-de-software/pull/205)), agora com 11 testes independentes de API no ServeRest.
+
+### Instalação e execução
+
+Requisito: Node.js 22.13 ou superior e acesso à internet.
+
+```sh
+npm install
+npx playwright test
+```
+
+Somente a suíte de API:
+
+```sh
+npx playwright test tests/api
+# ou
+npm run test:api
+```
+
+Não é necessário instalar navegadores. Para conferir os tipos, use `npm run typecheck`; para abrir o relatório HTML após executar os testes, use `npm run test:report`.
+
+A URL é configurada apenas em `playwright.config.ts` e pode ser alterada pela variável de ambiente `API_BASE_URL`. Os testes usam caminhos relativos, duas execuções paralelas e nenhuma tentativa automática adicional.
+
+### Organização e melhorias realizadas
+
+- `tests/api/`: cenários e verificações de usuários, login, produtos e carrinhos.
+- `tests/data/factories.ts`: dados dinâmicos com Faker e UUIDs nos emails e nomes de produtos.
+- `tests/helpers/`: cadastro de recursos e autenticação reutilizável.
+- `tests/fixtures/api.fixture.ts`: pré-condições próprias de cada teste e limpeza em ordem inversa (carrinho, produto, usuário), inclusive em falhas.
+
+Os seis cenários anteriores foram mantidos e ajustados para não compartilhar dados. Foram adicionados login inválido, cadastro inválido, cadastro autenticado de produto, atualização com consulta final e fluxo de carrinho com validação de estoque.
+
+As verificações cobrem status, mensagens, identificadores, dados persistidos, email duplicado e restauração do estoque após cancelar uma compra. Cada teste pode ser executado isoladamente, por exemplo:
+
+```sh
+npx playwright test tests/api/carrinhos.spec.ts
+```
+
+A evidência da execução completa está em [evidencias/execucao-completa.txt](evidencias/execucao-completa.txt). O ServeRest é compartilhado: indisponibilidade externa pode afetar a execução. A limpeza remove apenas os recursos criados pelo próprio teste; interrupção forçada do processo pode impedir o teardown.
+
 # Materiais
 
 - ## [Mind Map](https://app.xmind.com/share/0ThrBL00) da Disciplina
