@@ -4,7 +4,7 @@
   "description": "Repositório utilizado na disciplina de Projeto, Implementação e Teste de Software do curso de Engenharia de Software da Unicesumar Ponta Grossa",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:unit": "nyc --report-dir ./coverage-unit --check-coverage false mocha \"tests/unit/**/*.test.js\""
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,15 @@
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
     "@playwright/test": "^1.64.0",
+    "chai": "^6.3.0",
+    "mocha": "^12.0.3",
+    "nyc": "^18.0.0",
+    "sinon": "^22.1.0",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "escape-string-regexp": "^5.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "nedb-promises": "^6.2.4"
   }
 }
