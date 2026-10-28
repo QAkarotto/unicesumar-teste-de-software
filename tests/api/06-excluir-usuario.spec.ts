@@ -1,13 +1,14 @@
 
 import { test, expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
 
 test('Deve excluir um usuario cadastrado', async ({ request }) => {
 
   const usuario = {
-    nome: 'Usuario Exclusao',
-    email: `exclusao${Date.now()}@teste.com`,
-    password: '123456',
-    administrador: 'false'
+    nome: faker.person.fullName(),
+    email: faker.internet.email(),
+    password:  faker.internet.password(),
+    administrador: 'true'
   };
 
   // Cadastrar usuario

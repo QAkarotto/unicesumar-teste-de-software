@@ -1,12 +1,13 @@
 
 import { test, expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
 
 test('Deve consultar usuario pelo ID', async ({ request }) => {
 
   const usuario = {
-    nome: 'Usuario Consulta',
+    nome: faker.person.fullName(),
     email: `consulta${Date.now()}@teste.com`,
-    password: '123456',
+    password: faker.internet.password(),
     administrador: 'false'
   };
 

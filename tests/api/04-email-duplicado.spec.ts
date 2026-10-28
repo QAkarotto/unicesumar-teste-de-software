@@ -1,13 +1,14 @@
 
 import { test, expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
 
 test('Nao deve permitir email duplicado', async ({ request }) => {
 
   const usuario = {
-    nome: 'Usuario Duplicado',
-    email: `duplicado${Date.now()}@teste.com`,
-    password: '123456',
-    administrador: 'false'
+    nome: faker.person.fullName(),
+    email: faker.internet.email(),
+    password:  faker.internet.password(),
+    administrador: 'true'
   };
 
   const primeiroCadastro = await request.post('/usuarios', {

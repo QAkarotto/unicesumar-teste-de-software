@@ -1,5 +1,6 @@
 
 import { test, expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
 
 test('Deve retornar a lista de usuarios', async ({ request }) => {
 
