@@ -1,13 +1,13 @@
----
-name: Relatório de Testes Exploratórios
-about: Relatório para Testes Exploratórios
+﻿---
+name: RelatÃ³rio de Testes ExploratÃ³rios
+about: RelatÃ³rio para Testes ExploratÃ³rios
 title: "[TEST]"
 labels: test
 assignees: ''
 
 ---
 
-# Sessão #ID — Teste Exploratório de UI
+# SessÃ£o #ID â€” Teste ExploratÃ³rio de UI
 
 ## Participantes
 
@@ -16,47 +16,47 @@ assignees: ''
 
 ## Charter
 
-**Explore:**  
-<!-- O que será explorado? -->
+**Explore:**
+<!-- O que serÃ¡ explorado? -->
 
-**Com:**  
-<!-- Qual abordagem, heurística ou técnica será utilizada? -->
+**Com:**
+<!-- Qual abordagem, heurÃ­stica ou tÃ©cnica serÃ¡ utilizada? -->
 
-**Para descobrir:**  
-<!-- O que você deseja aprender, questionar ou investigar? -->
+**Para descobrir:**
+<!-- O que vocÃª deseja aprender, questionar ou investigar? -->
 
-## Sessão
+## SessÃ£o
 
-**Início:**  
-**Fim:**  
+**InÃ­cio:**
+**Fim:**
 
-## Estratégia
+## EstratÃ©gia
 
-<!-- Qual estratégia (heuristíca, hipotese, persona, etc) foi utilizada? Como a exploração foi conduzida? -->
+<!-- Qual estratÃ©gia (heuristÃ­ca, hipotese, persona, etc) foi utilizada? Como a exploraÃ§Ã£o foi conduzida? -->
 
 
 
 ## Achados
 
-<!-- Comportamentos observados, possíveis riscos, inconsistências ou outras descobertas relevantes. -->
+<!-- Comportamentos observados, possÃ­veis riscos, inconsistÃªncias ou outras descobertas relevantes. -->
 
 ## Questionamentos
 
-<!-- Comportamentos que precisam de esclarecimento ou que levantaram dúvidas durante a exploração. -->
+<!-- Comportamentos que precisam de esclarecimento ou que levantaram dÃºvidas durante a exploraÃ§Ã£o. -->
 
-## Evidências
+## EvidÃªncias
 
-<!-- Screenshots, vídeos ou outras evidências relevantes. -->
+<!-- Screenshots, vÃ­deos ou outras evidÃªncias relevantes. -->
 
 ## Aprendizados
 
-<!-- O que foi descoberto sobre o comportamento da aplicação durante a sessão? -->
+<!-- O que foi descoberto sobre o comportamento da aplicaÃ§Ã£o durante a sessÃ£o? -->
 
 ## Riscos
 
-<!-- Quais possíveis impactos ou riscos foram identificados? -->
+<!-- Quais possÃ­veis impactos ou riscos foram identificados? -->
 
-## Próximas investigações
+## PrÃ³ximas investigaÃ§Ãµes
 
 <!-- O que seria investigado com mais tempo ou quais perguntas ainda precisam ser respondidas? -->
 

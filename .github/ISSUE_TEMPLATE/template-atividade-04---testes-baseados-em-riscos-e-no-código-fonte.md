@@ -1,5 +1,5 @@
----
-name: Template Atividade 04 - Testes Baseados em Riscos e no Código Fonte
+﻿---
+name: Template Atividade 04 - Testes Baseados em Riscos e no CÃ³digo Fonte
 about: Describe this issue template's purpose here.
 title: ''
 labels: ''
@@ -7,61 +7,61 @@ assignees: ''
 
 ---
 
-# Atividade 04 --- Testes Baseados em Riscos e no Código Fonte
+# Atividade 04 --- Testes Baseados em Riscos e no CÃ³digo Fonte
 
 ## Funcionalidade
 
 ```{=html}
 <!-- Informe a funcionalidade escolhida -->
 ```
-## Análise de Riscos
+## AnÃ¡lise de Riscos
 
-  Risco     Probabilidade   Impacto   Nível de Risco
+  Risco     Probabilidade   Impacto   NÃ­vel de Risco
   ------- --------------- --------- ----------------
-                                    
-                                    
-                                    
-                                    
-                                    
+
+
+
+
+
 
 ### Riscos Priorizados
 
 -   **Risco 1:**
-    -   Teste para mitigação:
+    -   Teste para mitigaÃ§Ã£o:
 -   **Risco 2:**
-    -   Teste para mitigação:
+    -   Teste para mitigaÃ§Ã£o:
 
-## Análise do Código Fonte
+## AnÃ¡lise do CÃ³digo Fonte
 
 -   **Arquivo:**
--   **Função/Método:**
+-   **FunÃ§Ã£o/MÃ©todo:**
 
 ### Trecho analisado
 
 ``` text
-Cole aqui o trecho de código analisado.
+Cole aqui o trecho de cÃ³digo analisado.
 ```
 
-### Decisões e caminhos identificados
+### DecisÃµes e caminhos identificados
 
--   
--   
+-
+-
 
 ## Testes Planejados
 
-  Teste   Origem/Cobertura             Código/Condição
+  Teste   Origem/Cobertura             CÃ³digo/CondiÃ§Ã£o
   ------- ---------------------------- -----------------
-          Risco / Sentença / Decisão   
-          Risco / Sentença / Decisão   
-          Risco / Sentença / Decisão   
+          Risco / SentenÃ§a / DecisÃ£o
+          Risco / SentenÃ§a / DecisÃ£o
+          Risco / SentenÃ§a / DecisÃ£o
 
 ## Casos de Teste
 
 ### CT-01 --- Nome do caso de teste
 
-**Origem:** Risco / Cobertura de Sentença / Cobertura de Decisão
+**Origem:** Risco / Cobertura de SentenÃ§a / Cobertura de DecisÃ£o
 
-## **Pré-condições**
+## **PrÃ©-condiÃ§Ãµes**
 
 **Passos** 1. 2. 3.
 
@@ -71,15 +71,15 @@ Cole aqui o trecho de código analisado.
 
 **Status:** Passou / Falhou
 
-## **Evidência**
+## **EvidÃªncia**
 
 ------------------------------------------------------------------------
 
 ### CT-02 --- Nome do caso de teste
 
-**Origem:** Risco / Cobertura de Sentença / Cobertura de Decisão
+**Origem:** Risco / Cobertura de SentenÃ§a / Cobertura de DecisÃ£o
 
-## **Pré-condições**
+## **PrÃ©-condiÃ§Ãµes**
 
 **Passos** 1. 2. 3.
 
@@ -89,17 +89,17 @@ Cole aqui o trecho de código analisado.
 
 **Status:** Passou / Falhou
 
-## **Evidência**
+## **EvidÃªncia**
 
 ------------------------------------------------------------------------
 
 ```{=html}
 <!-- Duplique o modelo acima para os demais casos de teste. -->
 ```
-## Análise Final
+## AnÃ¡lise Final
 
--   **Sentenças exercitadas:**
--   **Decisões exercitadas:**
--   **Caminhos não exercitados:**
--   **Cenário identificado a partir da análise do código:**
+-   **SentenÃ§as exercitadas:**
+-   **DecisÃµes exercitadas:**
+-   **Caminhos nÃ£o exercitados:**
+-   **CenÃ¡rio identificado a partir da anÃ¡lise do cÃ³digo:**
 -   **O que os resultados indicam sobre a qualidade da funcionalidade:**
