@@ -1,0 +1,27 @@
+Atividade 02 — Evidência de execução da suíte de API
+Data: 2026-10-18
+API: https://serverest.dev
+Branch: feature/atividade-02-api-refatorada
+
+Validações realizadas:
+
+$ npm install
+added 8 packages, and audited 9 packages
+found 0 vulnerabilities
+
+$ npm run typecheck
+> unicesumar-playwright-api-tests@1.0.0 typecheck
+> tsc --noEmit
+Código de saída: 0
+
+$ npx playwright test tests/api
+Running 15 tests using 2 workers
+15 passed (38.9s)
+Código de saída: 0
+
+$ npx playwright test
+Running 15 tests using 2 workers
+15 passed (38.2s)
+Código de saída: 0
+
+Resultado: suíte de API aprovada e sem erros de tipagem.
