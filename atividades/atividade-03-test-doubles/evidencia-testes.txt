@@ -1,0 +1,58 @@
+
+> serverest@3.2.2 test:unit
+> nyc --report-dir ./coverage-unit --check-coverage false mocha --config test/unit/.mocharc.js
+
+
+[0m[0m
+[0m  alterarValoresParaRegex[0m
+  [32m  ✔[0m[90m should convert specified fields to RegExp[0m
+  [32m  ✔[0m[90m should handle special regex characters[0m
+  [32m  ✔[0m[90m should remove field without value[0m
+
+[0m  Atividade 03 - Test Doubles - Luiz e Jefferson[0m
+  [32m  ✔[0m[90m 01 - Deve calcular o preço total corretamente[0m
+  [32m  ✔[0m[90m 02 - Deve retornar zero para carrinho vazio[0m
+  [32m  ✔[0m[90m 03 - Deve identificar produtos duplicados[0m
+  [32m  ✔[0m[90m 04 - Stub: deve controlar o retorno da consulta de preços[0m
+  [32m  ✔[0m[90m 05 - Deve retornar erro controlado pela dependência[0m
+  [32m  ✔[0m[90m 06 - Spy: deve observar a chamada de atualização de estoque[0m
+  [32m  ✔[0m[90m 07 - Mock: deve exigir a restauração do estoque[0m
+  [32m  ✔[0m[90m 08 - Deve propagar erro na atualização do estoque[0m
+
+[0m  carrinhosService[0m
+  [32m  ✔[0m[90m precoTotal - Deve retornar o preço corretamente de acordo com a quantidade de produtos e preço unitário[0m
+  [32m  ✔[0m[90m quantidadeTotal - Deve retornar a quantidade total corretamente de acordo com a quantidade de cada produto e reduzir o estoque 3 vezes[0m
+
+[0m  getRandomFinancialContributor[0m
+  [32m  ✔[0m[90m Deve retornar apenas 1 apoiador, ignorando ADMIN, HOST e com nome 'Paulo Gonçalves'[0m
+  [32m  ✔[0m[90m Deve fazer log de erro quando não for possível ter acesso à lista de contribuidores financeiros[0m
+
+[0m  github-release[0m
+[0m    normalizeVersion[0m
+    [32m  ✔[0m[90m deve normalizar versões com prefixo v e espaços[0m
+    [32m  ✔[0m[90m deve lidar com entradas vazias ou numéricas[0m
+[0m    fetchLatestRelease[0m
+    [32m  ✔[0m[90m deve retornar dados normalizados da release mais recente[0m
+    [32m  ✔[0m[90m deve retornar null quando tag_name estiver ausente[0m
+    [32m  ✔[0m[90m deve retornar null quando html_url estiver ausente[0m
+
+
+[92m [0m[32m 20 passing[0m[90m (78ms)[0m
+
+-----------------------------------|---------|----------|---------|---------|-----------------------
+File                               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s     
+-----------------------------------|---------|----------|---------|---------|-----------------------
+All files                          |   63.33 |    61.53 |   33.33 |   63.74 |                       
+ services                          |   52.63 |       30 |    17.5 |   53.54 |                       
+  auth-service.js                  |      80 |      100 |       0 |      80 | 10                    
+  carrinhos-service.js             |   69.49 |       75 |   38.88 |   68.42 | ...2-83,87-88,112-114 
+  produtos-service.js              |   27.65 |        0 |       0 |   30.23 | ...39,143-144,148-158 
+  usuarios-service.js              |   54.54 |      100 |       0 |   54.54 | ...,28,32-33,37,41,45 
+ utils                             |   93.61 |    81.25 |    90.9 |   93.18 |                       
+  alterarValoresParaRegex.js       |     100 |      100 |     100 |     100 |                       
+  conf.js                          |     100 |      100 |     100 |     100 |                       
+  constants.js                     |     100 |      100 |     100 |     100 |                       
+  getRandomFinancialContributor.js |     100 |      100 |     100 |     100 |                       
+  github-release.js                |     100 |    83.33 |     100 |     100 | 19,28                 
+  logger.js                        |   57.14 |        0 |       0 |   57.14 | 6-8                   
+-----------------------------------|---------|----------|---------|---------|-----------------------
