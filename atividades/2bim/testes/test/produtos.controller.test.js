@@ -1,10 +1,10 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
-const ProdutosController = require('../controllers/produtos.controller');
+const ProdutosController = require('../controllers/Produtos.controller');
 const ProdutoModel = require('../models/produto.model');
 const LoggerService = require('../services/logger.service');
 
-describe('ProdutosController - Testes Unitários com Sinon.js', () => {
+describe('ProdutosController', () => {
   let produtosController;
 
   beforeEach(() => {
