@@ -1,0 +1,18 @@
+{
+  "name": "atividade-03-test-doubles-serverest",
+  "version": "1.0.0",
+  "description": "Testes unitários do código do ServeRest com Test Doubles (stub, spy e mock) usando Mocha, Chai e Sinon",
+  "private": true,
+  "scripts": {
+    "test:unit": "mocha --config test/unit/.mocharc.js"
+  },
+  "devDependencies": {
+    "chai": "^4.5.0",
+    "mocha": "^11.7.5",
+    "serverest": "3.2.2",
+    "sinon": "^21.1.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
