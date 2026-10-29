@@ -1,7 +1,6 @@
 class ProdutosController {
-  constructor(produtoModel, loggerService) {
+  constructor(produtoModel) {
     this.produtoModel = produtoModel;
-    this.loggerService = loggerService;
   }
 
   async cadastrar(dados) {
@@ -22,7 +21,6 @@ class ProdutosController {
 
     const novoProduto = await this.produtoModel.create(payload);
 
-    this.loggerService.registrarLog(`Produto cadastrado com sucesso: ${novoProduto.nome}`);
 
     return novoProduto;
   }
