@@ -1,24 +1,67 @@
-# unicesumar-teste-de-software
-Repositório utilizado na disciplina de Projeto, Implementação e Teste de Software do curso de Engenharia de Software da Unicesumar Ponta Grossa
+# Testes automatizados com Playwright — ServeRest
 
-# Materiais
+Projeto de testes com **Playwright + TypeScript** para a API do [ServeRest](https://serverest.dev/),
+já preparado para futuros testes Web.
 
-- ## [Mind Map](https://app.xmind.com/share/0ThrBL00) da Disciplina
+## Estrutura
 
-# Materiais Complementares
-- ## Curso de Git e GitHub do Goku
-    - [Instruções para configuração de ambiente e atividades das aulas](https://booming-blouse-e16.notion.site/390cf9ad8d508083ad3de85713c19a4a?v=390cf9ad8d5080349a8b000ccb843083&pvs=143)
-    - [Aulas gravadas](https://drive.google.com/drive/folders/1jcjCtkjueHFcE28LDyLnI9Dx-F3WBIlF?usp=sharing)
-    - [Formulário para ter acesso ao repositório do curso](https://docs.google.com/forms/d/e/1FAIpQLSetBGH_UzZEZFoJuQERJhLkpFImu__nDS-dW8UZHjtJruDnbw/viewform?usp=sharing&ouid=115907476640584517407)
+```
+tests/
+├── api/            # specs: apenas cenários e verificações (usuarios, login, produtos, carrinhos)
+├── helpers/
+│   ├── api.ts      # requisições reutilizáveis (usuários, produtos, carrinhos)
+│   └── auth.ts     # login, obtenção de token e preparação de sessão
+├── fixtures/
+│   └── api.fixture.ts  # fixtures: usuario, admin, comum, criarProduto, criarCarrinho (com limpeza)
+├── data/
+│   └── factories.ts    # geração de dados dinâmicos com Faker
+└── web/            # reservado para testes Web (projeto "web" já configurado)
+playwright.config.ts
+package.json
+```
 
-- ## Curso de Testes de API do Goku
-    - [Aulas gravadas](https://drive.google.com/drive/folders/18D9ZJ1F-pVPy0S_DndA2mLCTLe7aBtkX?usp=sharing)
-    - [Mind Map utilizado no treinamento](https://app.xmind.com/share/FGhdypvt) - senha: dojodoqame
+## Pré-requisitos
 
-## Manifesto Oficial
+- Node.js 20 ou superior
 
-### Lista de alunos que concordam que o Professor Goku é o melhor professor do universo
-Adicione seu nome, turma (ESOFT6S) e ano (2026) em ordem alfabética:
+## Instalação
 
-1. Aluno Exemplo (ESOFT6S - 2026)
-2. 
+```bash
+npm install
+```
+
+> Os testes de API **não precisam** de navegadores. Para os testes Web (futuro), rode uma vez:
+> `npm run install:browsers`.
+
+## Execução
+
+| Comando                | O que faz                                   |
+|------------------------|---------------------------------------------|
+| `npx playwright test`  | Executa todos os projetos                   |
+| `npm run test:api`     | Executa **apenas** os testes de API         |
+| `npm run test:web`     | Executa apenas os testes Web (quando existirem) |
+| `npm run test:report`  | Abre o relatório HTML da última execução    |
+
+Equivalentes sem script: `npx playwright test --project=api` ou `npx playwright test tests/api`.
+
+## Configuração
+
+URLs podem ser sobrescritas por variáveis de ambiente:
+
+```bash
+API_URL=https://serverest.dev WEB_URL=https://front.serverest.dev npx playwright test --project=api
+```
+
+## Cenários de API cobertos (21 testes)
+
+- **Usuários:** cadastro com dados dinâmicos + consulta; consulta por ID; e-mail duplicado (regra de negócio); cadastro sem e-mail (inválido); ID inexistente (inválido); exclusão e confirmação de que o recurso deixou de existir.
+- **Login:** login válido com token Bearer; senha incorreta; e-mail não cadastrado (inválidos).
+- **Produtos:** exige token (401); não-admin recebe 403; admin cadastra e consulta; preço inválido; nome duplicado; atualização refletida na consulta.
+- **Carrinhos:** exige token (401); totais, itens e dono do carrinho; baixa de estoque; quantidade acima do estoque; só um carrinho por usuário; cancelar compra reabastece o estoque.
+
+## Boas práticas aplicadas
+
+- **Independência:** cada teste monta suas pré-condições por fixtures; não há dependência de ordem.
+- **Dados dinâmicos:** e-mails, nomes, preços e descrições gerados com `@faker-js/faker` (`tests/data/factories.ts`).
+- **Limpeza:** o teardown das fixtures remove carrinhos, produtos e usuários criados.
+- **Configuração central:** URLs e opções comuns em `playwright.config.ts`; os testes usam só caminhos relativos.
