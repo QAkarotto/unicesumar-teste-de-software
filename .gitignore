@@ -1,0 +1,14 @@
+node_modules/
+.nyc_output/
+
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+.DS_Store
+Thumbs.db
+*.log
+
+.vscode/
+.idea/
