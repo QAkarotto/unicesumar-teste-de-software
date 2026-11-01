@@ -1,0 +1,278 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\Samsung\\Downloads\\serverest-e2e\\unicesumar-teste-de-software\\eduarda-apim-e2e-playwright\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "C:\\Users\\Samsung\\Downloads\\serverest-e2e\\unicesumar-teste-de-software\\eduarda-apim-e2e-playwright\\playwright.config.js",
+    "rootDir": "C:/Users/Samsung/Downloads/serverest-e2e/unicesumar-teste-de-software/eduarda-apim-e2e-playwright/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 3
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/Samsung/Downloads/serverest-e2e/unicesumar-teste-de-software/eduarda-apim-e2e-playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/Samsung/Downloads/serverest-e2e/unicesumar-teste-de-software/eduarda-apim-e2e-playwright/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\Samsung\\Downloads\\serverest-e2e\\unicesumar-teste-de-software\\eduarda-apim-e2e-playwright\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "name": "chromium",
+        "testDir": "C:\\Users\\Samsung\\Downloads\\serverest-e2e\\unicesumar-teste-de-software\\eduarda-apim-e2e-playwright\\tests\\e2e",
+        "snapshotDir": "C:\\Users\\Samsung\\Downloads\\serverest-e2e\\unicesumar-teste-de-software\\eduarda-apim-e2e-playwright\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "https://front.serverest.dev",
+          "testIdAttribute": "data-testid",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "video": "retain-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "evidencias/resultado.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 6,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "01-cadastro-e-login.spec.js",
+      "file": "01-cadastro-e-login.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Cenário 1: cadastro e autenticação de usuário",
+          "file": "01-cadastro-e-login.spec.js",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "cadastra um usuário comum e autentica com as credenciais criadas",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14307,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-01T14:58:02.259Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3908d2fc5400e3d152d6-ada1c4b292b63a9b21f7",
+              "file": "01-cadastro-e-login.spec.js",
+              "line": 6,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "02-cadastro-produto-admin.spec.js",
+      "file": "02-cadastro-produto-admin.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Cenário 2: cadastro de produto pelo administrador",
+          "file": "02-cadastro-produto-admin.spec.js",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "administrador cadastra produto e o encontra na listagem",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 12943,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-01T14:58:02.294Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f40292b8b7553f33f22e-8c1be63def2f2677f0f8",
+              "file": "02-cadastro-produto-admin.spec.js",
+              "line": 6,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "03-login-invalido.spec.js",
+      "file": "03-login-invalido.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Cenário 3: autenticação com credenciais inválidas",
+          "file": "03-login-invalido.spec.js",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "exibe mensagem de erro e bloqueia o acesso à área autenticada",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 9579,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-01T14:58:02.280Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9209e401cf9b94b7ec94-7fdfddc2685c86ac4fd6",
+              "file": "03-login-invalido.spec.js",
+              "line": 6,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-01T14:58:01.630Z",
+    "duration": 15572.225,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
