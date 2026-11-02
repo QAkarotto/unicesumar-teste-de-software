@@ -22,3 +22,28 @@ Adicione seu nome, turma (ESOFT6S) e ano (2026) em ordem alfabética:
 
 1. Aluno Exemplo (ESOFT6S - 2026)
 2. 
+
+
+## Automação de Testes com Playwright - ServeRest
+
+### Pré-requisitos
+- Node.js instalado (v16 ou superior)
+
+### Instalação
+Clone o repositório e instale as dependências executando:
+
+bash
+npm install
+
+
+### Execução
+Para rodar todos os testes do projeto:
+
+bash
+npx playwright test
+
+
+Para executar **apenas** os testes de API:
+
+bash
+npx playwright test --project=api
