@@ -1,4 +1,4 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
@@ -7,6 +7,7 @@ export default defineConfig({
     extraHTTPHeaders: {
       'Content-Type': 'application/json',
     },
+    testIdAttribute: 'data-testid',
   },
   reporter: 'html',
   projects: [
@@ -17,6 +18,10 @@ export default defineConfig({
     {
       name: 'web',
       testDir: './tests/web',
+      use: {
+        baseURL: 'https://front.serverest.dev',
+        ...devices['Desktop Firefox'],
+      },
     },
   ],
 });
