@@ -22,3 +22,23 @@ Adicione seu nome, turma (ESOFT6S) e ano (2026) em ordem alfabética:
 
 1. Aluno Exemplo (ESOFT6S - 2026)
 2. 
+
+## Atividade 04 — Automação de Testes E2E com Playwright
+
+Esta atividade implementa três jornadas E2E para o frontend do ServeRest (`https://front.serverest.dev`): cadastro e autenticação de cliente, cadastro de produto como administrador e tentativa de login inválida.
+
+### Instalação e execução
+
+```bash
+npm install
+npx playwright install chromium
+npm run test:e2e
+```
+
+Use `npm test` para executar todos os testes automatizados e `npm run test:api` para executar somente os testes de API. Para usar outro frontend, defina `SERVEREST_FRONT_URL`; a API padrão é `https://serverest.dev`.
+
+A fixture `tests/fixtures/admin.fixture.ts` prepara um administrador pela API e fornece uma página autenticada para o cenário de produto. As ações de cadastro e login dos cenários ocorrem pela interface, com seletores `data-testid` e dados únicos gerados pelo Faker.
+
+### Evidência
+
+O resultado da execução dos três testes está em [`evidencias/atividade-04-e2e.txt`](evidencias/atividade-04-e2e.txt).

@@ -1,0 +1,12 @@
+Atividade 04 - Automação de Testes E2E com Playwright
+Data: 2026-11-03
+Comando: npm run test:e2e
+Ambiente validado: https://front.serverest.dev (API: https://serverest.dev)
+
+Resultado da execução:
+Running 3 tests using 2 workers
+  PASS administrador cadastra produto e confirma os dados na listagem (3.9s)
+  PASS cadastra um usuário e autentica com as credenciais criadas (7.8s)
+  PASS recusa credenciais inválidas e mantém o usuário fora da área autenticada (2.9s)
+
+3 passed (11.7s)
