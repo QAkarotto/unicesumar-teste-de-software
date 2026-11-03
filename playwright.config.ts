@@ -25,5 +25,10 @@ export default defineConfig({
       testDir: './tests/web',
       use: { browserName: 'chromium' },
     },
+    {
+      name: 'e2e',
+      testDir:'./tests/e2e',
+      use:{baseURL: API_URL},
+    }
   ],
 });

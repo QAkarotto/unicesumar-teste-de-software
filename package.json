@@ -5,7 +5,9 @@
   "scripts": {
     "test": "playwright test",
     "test:api": "playwright test --project=api",
-    "test:web": "playwright test --project=web"
+    "test:web": "playwright test --project=web",
+    "test:e2e": "playwright test --project=e2e"
+  
   },
   "devDependencies": {
     "@faker-js/faker": "^10.6.0",
