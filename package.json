@@ -4,8 +4,12 @@
   "description": "Repositório utilizado na disciplina de Projeto, Implementação e Teste de Software do curso de Engenharia de Software da Unicesumar Ponta Grossa",
   "main": "index.js",
   "scripts": {
-    "test:unit": "nyc --report-dir ./coverage-unit --check-coverage false mocha \"tests/unit/**/*.test.js\""
-  },
+    "test:unit": "nyc --report-dir ./coverage-unit --check-coverage false mocha \"tests/unit/**/*.test.js\"",
+    "test:api": "playwright test --config=playwright.api.config.ts",
+    "test:e2e": "playwright test --config=playwright.config.ts",
+    "test:e2e:debug": "playwright test --config=playwright.config.ts --debug",
+    "test:e2e:report": "playwright show-report playwright-report"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/QAkarotto/unicesumar-teste-de-software.git"
