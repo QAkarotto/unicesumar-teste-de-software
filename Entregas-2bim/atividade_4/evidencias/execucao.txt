@@ -1,0 +1,14 @@
+Execução: 04/11/2026, 21:27:37
+Front: https://front.serverest.dev
+API:   https://serverest.dev
+Node:  v24.20.0
+
+Running 5 tests using 2 workers
+
+  ok 2 [chromium] › tests\e2e\cenario1-cadastro-e-autenticacao.spec.ts:19:9 › Cenário 1: cadastro e autenticação de usuário › CT02 - usuário administrador se cadastra, faz login e acessa a área /admin/home (6.3s)
+  ok 1 [chromium] › tests\e2e\cenario1-cadastro-e-autenticacao.spec.ts:19:9 › Cenário 1: cadastro e autenticação de usuário › CT01 - usuário comum se cadastra, faz login e acessa a área /home (6.7s)
+  ok 4 [chromium] › tests\e2e\cenario3-login-invalido.spec.ts:16:7 › Cenário 3: autenticação com credenciais inválidas › CT04 - login com e-mail não cadastrado é recusado (4.5s)
+  ok 3 [chromium] › tests\e2e\cenario2-cadastro-de-produto.spec.ts:12:7 › Cenário 2: cadastro de produto pelo administrador › CT03 - administrador cadastra um produto e o encontra na listagem com os dados informados (7.1s)
+  ok 5 [chromium] › tests\e2e\cenario3-login-invalido.spec.ts:27:7 › Cenário 3: autenticação com credenciais inválidas › CT05 - login com senha incorreta de um usuário existente é recusado (5.1s)
+
+  5 passed (16.9s)
