@@ -1,0 +1,21 @@
+{
+  "name": "atividade-04-e2e-serverest-front",
+  "version": "1.0.0",
+  "description": "Testes E2E com Playwright no front-end do ServeRest (cadastro/autenticação, cadastro de produto e login inválido)",
+  "private": true,
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed --workers=1",
+    "evidencias": "node scripts/gerar-evidencias.js",
+    "test:report": "playwright show-report",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
