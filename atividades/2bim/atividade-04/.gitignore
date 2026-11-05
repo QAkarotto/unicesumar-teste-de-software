@@ -1,0 +1,12 @@
+# Dependências do projeto
+node_modules/
+
+# Relatórios do Playwright
+playwright-report/
+test-results/
+
+# Relatórios de cobertura
+coverage/
+
+# Arquivos temporários
+*.log
