@@ -11,17 +11,23 @@ export default defineConfig({
         extraHTTPHeaders: {
             'Content-Type': 'application/json',
         },
+        trace: 'retain-on-failure',
+        screenshot: 'only-on-failure',
     },
 
     projects: [
         {
             name: 'api',
             testDir: './tests/api',
+            testMatch: '**/*.spec.ts',
         },
         {
             name: 'web',
             testDir: './tests/web',
             testMatch: '**/*.spec.ts',
+            use: {
+                baseURL: 'https://front.serverest.dev',
+            },
         },
     ],
 });

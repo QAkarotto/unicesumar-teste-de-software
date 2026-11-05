@@ -153,3 +153,106 @@ npx playwright test --project=api --list
 ### Observação
 
 A suíte de API utiliza o ambiente público de testes da ServeRest. A execução depende da disponibilidade desse serviço. Os testes podem criar e excluir usuários, produtos e carrinhos de teste.
+
+
+
+---
+
+## Atividade 04 — Automação de Testes E2E com Playwright
+
+### Objetivo
+
+Implementar testes automatizados End-to-End (E2E) na interface Web do ServeRest, utilizando Playwright e TypeScript, validando fluxos reais de cadastro, autenticação e gerenciamento de produtos.
+
+### Tecnologias utilizadas
+
+- Node.js e npm.
+- TypeScript.
+- Playwright Test.
+- Faker (`@faker-js/faker`).
+- Frontend ServeRest: https://front.serverest.dev/
+- API ServeRest: https://serverest.dev/
+
+### Cenários automatizados
+
+Foram implementados três cenários de testes E2E:
+
+**1. Cadastro e autenticação de usuário**
+- Acessar a tela de cadastro pela interface Web.
+- Preencher os dados utilizando informações dinâmicas.
+- Validar a criação do usuário.
+- Realizar login com as credenciais cadastradas.
+- Verificar o acesso à área autenticada.
+
+**2. Cadastro e consulta de produto como administrador**
+- Preparar um usuário administrador por meio da API.
+- Utilizar uma fixture personalizada com `test.extend()` para disponibilizar uma página autenticada.
+- Acessar a tela de cadastro de produtos.
+- Cadastrar um produto pela interface Web.
+- Acessar a listagem e validar a presença do produto cadastrado.
+- Realizar a limpeza do usuário administrador criado para o teste.
+
+**3. Tentativa de login com credenciais inválidas**
+- Acessar a tela de login.
+- Informar credenciais inválidas.
+- Validar a apresentação da mensagem de erro.
+- Verificar que o acesso à área autenticada foi negado.
+
+### Organização dos novos arquivos
+
+- `tests/web/cadastro-usuario.spec.ts`: teste de cadastro e autenticação de usuário.
+- `tests/web/cadastro-produto.spec.ts`: teste de cadastro e consulta de produto.
+- `tests/web/login-invalido.spec.ts`: teste de autenticação com credenciais inválidas.
+- `tests/fixtures/admin.fixture.ts`: fixture para preparação e autenticação de administrador.
+- `tests/helpers/web.ts`: função auxiliar para preenchimento de campos da interface.
+
+### Boas práticas aplicadas
+
+- Utilização de dados dinâmicos com Faker.
+- Separação entre preparação e execução dos cenários.
+- Reutilização de código por meio de funções auxiliares.
+- Utilização de fixture personalizada para autenticação administrativa.
+- Validação de respostas da API quando necessário para confirmar pré-condições.
+- Execução das ações principais diretamente pela interface Web.
+- Verificações com `expect` e seletores semânticos do Playwright.
+- Independência entre os cenários de teste.
+- Limpeza dos dados de preparação após a execução da fixture.
+
+### Execução dos testes
+
+Executar somente os testes E2E:
+
+```bash
+npm run test:web
+```
+
+Executar somente os testes de API:
+
+```bash
+npm run test:api
+```
+
+Executar toda a suíte de testes:
+
+```bash
+npm test
+```
+
+Caso seja necessário instalar o navegador Chromium:
+
+```bash
+npx playwright install chromium
+```
+
+### Resultado da execução
+
+Na execução final da suíte completa, foram obtidos os seguintes resultados:
+
+| Tipo de teste | Aprovados |
+|---|---:|
+| Testes de API | 12 |
+| Testes E2E Web | 3 |
+| **Total** | **15** |
+
+Todos os 15 testes foram executados com sucesso, sem falhas.
+
