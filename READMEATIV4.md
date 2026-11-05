@@ -1,26 +1,28 @@
-# Atividade 04 – Automação de Testes E2E com Playwright
+# Atividade 04 – Testes Automatizados End-to-End (E2E) com Playwright
 
-## 1. Objetivo
+## 1. Introdução e objetivo
 
-Esta atividade tem como objetivo desenvolver testes automatizados End-to-End (E2E) utilizando o Playwright, verificando o funcionamento de funcionalidades da aplicação ServeRest por meio da interface web.
+A proposta desta atividade consiste na implementação de testes automatizados End-to-End (E2E) com a ferramenta Playwright, tendo como finalidade avaliar o comportamento da aplicação ServeRest por meio de interações realizadas diretamente na interface web.
 
-Os testes foram desenvolvidos para validar operações de cadastro, autenticação e gerenciamento de produtos, simulando ações realizadas por usuários reais no sistema.
+A automação contempla funcionalidades relacionadas ao registro de usuários, autenticação no sistema e gerenciamento de produtos. Dessa maneira, busca-se reproduzir situações semelhantes às operações realizadas por usuários durante a utilização da aplicação.
 
-**Aplicação utilizada:** https://front.serverest.dev/
+**Frontend testado:** https://front.serverest.dev/
 
 **API utilizada:** https://serverest.dev/
 
-## 2. Tecnologias utilizadas
+## 2. Ferramentas e tecnologias
 
-- **Node.js:** ambiente de execução JavaScript.
-- **TypeScript:** linguagem utilizada no desenvolvimento dos testes.
-- **Playwright:** ferramenta de automação e testes E2E.
-- **ServeRest:** aplicação utilizada como ambiente de testes.
-- **Git e GitHub:** controle de versão e compartilhamento do código.
+Durante o desenvolvimento dos testes, foram utilizadas as seguintes tecnologias:
 
-## 3. Estrutura do projeto
+- **Node.js:** ambiente responsável pela execução dos códigos JavaScript e TypeScript.
+- **TypeScript:** linguagem utilizada para estruturar e implementar os testes automatizados.
+- **Playwright:** ferramenta responsável pela automação do navegador e execução dos cenários E2E.
+- **ServeRest:** aplicação utilizada como objeto de teste.
+- **Git e GitHub:** ferramentas empregadas para versionamento e armazenamento do código-fonte.
 
-Os arquivos desenvolvidos para esta atividade estão organizados da seguinte maneira:
+## 3. Organização dos arquivos
+
+Os arquivos relacionados à automação foram distribuídos em diretórios específicos, facilitando a identificação dos cenários e o reaproveitamento dos recursos utilizados nos testes.
 
 ```text
 tests/
@@ -34,124 +36,128 @@ tests/
 READMEATIV4.md
 ```
 
-### Descrição dos arquivos
+### Finalidade dos arquivos
 
-- **admin.fixture.ts:** contém a fixture personalizada responsável por criar um usuário administrador por meio da API e realizar sua autenticação pela interface web.
-- **cadastro-produto.spec.ts:** realiza o cadastro de um produto utilizando uma sessão autenticada de administrador e verifica sua presença na listagem.
-- **cadastro-usuario.spec.ts:** realiza o cadastro de um novo usuário e verifica a possibilidade de autenticação com as credenciais cadastradas.
-- **login-invalido.spec.ts:** verifica o comportamento do sistema diante de uma tentativa de login com credenciais inválidas.
+- **admin.fixture.ts:** implementa uma fixture personalizada que prepara o acesso administrativo. Para isso, cria um usuário administrador por meio da API e realiza sua autenticação pelo frontend.
+- **cadastro-produto.spec.ts:** automatiza o preenchimento e envio do formulário de cadastro de produtos, além de verificar se o novo registro aparece na listagem.
+- **cadastro-usuario.spec.ts:** simula o registro de um usuário comum e, posteriormente, realiza uma tentativa de autenticação com os dados informados.
+- **login-invalido.spec.ts:** avalia a resposta da aplicação quando são fornecidas credenciais incorretas, verificando se o acesso é bloqueado.
 
-## 4. Cenários de testes implementados
+## 4. Implementação dos cenários de teste
 
-### 4.1 Cadastro de usuário e autenticação
+### 4.1 Registro de usuário e validação do acesso
 
-O primeiro cenário verifica o processo de cadastro de um novo usuário pela interface do ServeRest.
+O primeiro teste tem como finalidade verificar se um novo usuário consegue realizar seu cadastro e, posteriormente, acessar o sistema utilizando as credenciais criadas.
 
-O teste realiza as seguintes etapas:
+O fluxo automatizado contempla:
 
-1. Acessa a página inicial da aplicação.
-2. Seleciona a opção de cadastro de usuário.
-3. Preenche os campos com nome, e-mail e senha.
-4. Realiza o cadastro.
-5. Retorna à tela de login.
-6. Informa as credenciais cadastradas.
-7. Verifica se a autenticação foi realizada com sucesso.
+1. Abertura da página inicial do ServeRest.
+2. Navegação até a funcionalidade de cadastro.
+3. Preenchimento das informações solicitadas, incluindo nome, e-mail e senha.
+4. Envio dos dados para concluir o registro.
+5. Retorno à página de autenticação.
+6. Inserção do e-mail e da senha utilizados no cadastro.
+7. Verificação do resultado da autenticação e do acesso à área correspondente ao perfil do usuário.
 
-Para evitar conflitos entre execuções, são utilizados dados dinâmicos, especialmente no endereço de e-mail.
+Para garantir que as execuções não interfiram umas nas outras, o teste utiliza endereços de e-mail gerados dinamicamente, evitando problemas relacionados à duplicidade de registros.
 
-### 4.2 Cadastro e listagem de produtos
+### 4.2 Registro e consulta de produtos
 
-O segundo cenário verifica a funcionalidade de cadastro de produtos, utilizando uma fixture personalizada para disponibilizar uma página autenticada como administrador.
+O segundo teste é direcionado à funcionalidade de gerenciamento de produtos, verificando se um administrador consegue cadastrar um novo item e encontrá-lo posteriormente na listagem.
 
-A fixture utiliza a API para criar um usuário com privilégios administrativos e, em seguida, realiza o login pela interface web.
+Para facilitar a preparação desse cenário, foi desenvolvida uma fixture específica para o perfil administrativo.
 
-Após a autenticação, o teste:
+O procedimento realizado é composto pelas seguintes ações:
 
-1. Acessa a opção de cadastro de produtos.
-2. Preenche os campos de nome, preço, descrição e quantidade.
-3. Realiza o cadastro.
-4. Acessa a listagem de produtos.
-5. Verifica se o produto cadastrado está presente na listagem.
+1. Preparação de uma conta administrativa por meio de uma requisição à API.
+2. Acesso à aplicação web e realização do login com as credenciais dessa conta.
+3. Abertura da página destinada ao cadastro de produtos.
+4. Preenchimento dos campos referentes ao nome, preço, descrição e quantidade.
+5. Confirmação do cadastro pela interface.
+6. Navegação até a página de consulta dos produtos.
+7. Verificação da existência do produto recém-cadastrado.
 
-Os dados do produto também são gerados dinamicamente para evitar duplicidade entre execuções.
+Assim como no cenário anterior, são utilizados dados dinâmicos para identificar o produto, reduzindo a possibilidade de conflitos entre diferentes execuções.
 
-### 4.3 Login com credenciais inválidas
+### 4.3 Tentativa de autenticação com dados incorretos
 
-O terceiro cenário verifica a segurança do processo de autenticação diante de dados incorretos.
+O terceiro cenário tem como objetivo avaliar se o mecanismo de autenticação impede a entrada de usuários que informam credenciais inválidas.
 
-O teste:
+Para realizar essa verificação, o teste executa as seguintes etapas:
 
-1. Acessa a página inicial do ServeRest.
-2. Informa um endereço de e-mail inexistente.
-3. Informa uma senha incorreta.
-4. Tenta realizar o login.
-5. Verifica se a mensagem de erro é apresentada.
-6. Confirma que o usuário não obteve acesso autenticado.
+1. Acesso à tela de login da aplicação.
+2. Preenchimento do campo de e-mail com um endereço inexistente.
+3. Inserção de uma senha incorreta.
+4. Envio do formulário de autenticação.
+5. Identificação e validação da mensagem de erro exibida.
+6. Confirmação de que a aplicação não permite o acesso à área restrita.
 
-## 5. Fixture personalizada
+Esse procedimento permite verificar se o sistema apresenta o tratamento esperado para tentativas de acesso sem credenciais válidas.
 
-Para o cenário de cadastro de produtos, foi utilizada a funcionalidade `test.extend()` do Playwright, permitindo criar uma fixture personalizada chamada `adminPage`.
+## 5. Utilização de fixture personalizada
 
-Essa abordagem possibilita reutilizar o processo de autenticação administrativa sem repetir as mesmas operações diretamente no teste.
+No teste de cadastro de produtos, foi adotado o recurso `test.extend()` disponibilizado pelo Playwright para implementar uma fixture denominada `adminPage`.
 
-O processo é dividido em duas partes:
+Sua principal finalidade é centralizar a preparação da sessão administrativa, disponibilizando uma página já autenticada para os testes que necessitam desse tipo de permissão.
 
-- **Preparação:** criação do usuário administrador por meio de uma requisição à API.
-- **Execução:** autenticação do administrador pela interface web e disponibilização da página autenticada para o teste.
+O funcionamento dessa estrutura envolve duas etapas principais:
 
-Dessa forma, a fixture facilita a organização do código, reduz a repetição e permite que o cenário de cadastro de produtos seja executado de maneira independente.
+- **Preparação do ambiente:** criação de um usuário com privilégios administrativos por meio de uma chamada à API do ServeRest.
+- **Autenticação e disponibilização da página:** utilização das credenciais criadas para realizar o login pela interface web. Após a validação do acesso, a página autenticada é disponibilizada ao cenário de teste.
 
-## 6. Execução dos testes
+A utilização dessa abordagem torna a implementação mais organizada, evita a repetição de procedimentos de autenticação e permite separar as etapas de preparação do ambiente das ações efetivamente verificadas pela automação.
 
-Para executar os testes, é necessário ter o Node.js instalado e as dependências do projeto configuradas.
+## 6. Instruções para execução
 
-A instalação das dependências pode ser realizada com:
+Para executar os testes, é necessário possuir o Node.js instalado e as dependências do projeto devidamente configuradas.
+
+Caso seja necessário instalar as dependências, utilize:
 
 ```bash
 npm install
 ```
 
-Para instalar o navegador Chromium utilizado pelo Playwright:
+O navegador Chromium utilizado pelo Playwright pode ser instalado com:
 
 ```bash
 npx playwright install chromium
 ```
 
-Para executar exclusivamente os testes da interface web:
+Para iniciar a execução dos testes pertencentes ao projeto web, utilize:
 
 ```bash
 npx playwright test --project=web
 ```
 
-Para executar os testes com o navegador visível:
+Caso seja necessário acompanhar as interações diretamente no navegador, os testes podem ser executados em modo visível, utilizando:
 
 ```bash
 npx playwright test --project=web --workers=1 --headed
 ```
 
-## 7. Resultados obtidos
+## 7. Resultados da automação
 
-Após a implementação e os ajustes necessários nos seletores dos elementos da interface, os três cenários foram executados com sucesso.
+Após o desenvolvimento dos cenários e os ajustes realizados nos seletores dos componentes da interface, foi possível executar os testes automatizados com os resultados esperados.
 
-**Resultado final:**
+O desempenho dos cenários foi o seguinte:
 
-- Cadastro de usuário e autenticação: aprovado.
-- Cadastro e listagem de produtos: aprovado.
-- Login com credenciais inválidas: aprovado.
+| Cenário | Resultado |
+|---|---|
+| Cadastro e autenticação de usuário | Aprovado |
+| Cadastro e consulta de produtos | Aprovado |
+| Autenticação com credenciais inválidas | Aprovado |
 
-**Total: 3 testes aprovados.**
+**Resultado geral: 3 testes aprovados.**
 
-## 8. Evidências da execução
+Os resultados demonstram que os fluxos automatizados conseguiram validar as funcionalidades propostas, incluindo o cadastro de informações, o acesso ao sistema e o tratamento de tentativas de autenticação inválidas.
 
-Nesta seção devem ser inseridas as capturas de tela que demonstram a execução dos cenários automatizados.
 
-![alt text](image.png)
+## 8. Repositório e versionamento
 
-## 9. Repositório
-
-O código-fonte desenvolvido para a atividade está disponível no repositório:
+Os arquivos desenvolvidos para esta atividade foram disponibilizados no repositório do GitHub:
 
 https://github.com/QAkarotto/unicesumar-teste-de-software
 
-**Branch utilizada:** `feature/e2e-playwright-patrick`
+**Branch utilizada:** `gabriel-matheus-atividade4`
 
+O versionamento foi realizado utilizando Git, permitindo organizar as alterações e disponibilizar a implementação para avaliação por meio do repositório remoto.
