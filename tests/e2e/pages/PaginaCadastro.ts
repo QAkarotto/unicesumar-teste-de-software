@@ -7,7 +7,6 @@ export class PaginaCadastro {
     private readonly inputEmail: import("@playwright/test").Locator;
     private readonly inputSenha: import("@playwright/test").Locator;
     private readonly buttonCadastrar: import("@playwright/test").Locator;
-    static visitarCadastro: any;
     private readonly buttonSair: import("@playwright/test").Locator;
     
     constructor(page: Page){
