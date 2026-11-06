@@ -1,0 +1,20 @@
+Registro do ambiente (coletado na execucao preliminar, antes dos dois cenarios definitivos)
+Data: 2026-11-06T13:53:01.697796-03:00
+Sistema: macOS-27.0.1-arm64-arm-64bit-Mach-O
+CPU: Apple M1
+CPUs logicas: 8
+RAM (bytes): 8589934592
+v24.21.0
+k6 v2.3.0 (commit/devel, go1.27.1, darwin/arm64)
+ServeRest: 3.2.2; iniciado com npx --yes serverest@3.2.2
+BASE_URL=http://localhost:3000
+Gerador e API no mesmo computador; dados iniciais, sem POST/PUT/DELETE.
+GET / -> HTTP 200; Content-Type: text/html; charset=utf-8
+Titulo HTML: ServeRest
+GET /status -> HTTP 200; Content-Type: text/html; charset=utf-8
+Titulo HTML: ServeRest Status
+GET /produtos -> HTTP 200; Content-Type: application/json; charset=utf-8
+quantidade=2
+GET /usuarios -> HTTP 200; Content-Type: application/json; charset=utf-8
+quantidade=1
+As consultas acima foram feitas com Python fora do k6 e nao integram suas metricas.

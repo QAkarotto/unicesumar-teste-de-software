@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="370" viewBox="0 0 760 370" role="img" aria-label="Vazão média e tempos de resposta nos dois cenários">
+<rect width="760" height="370" fill="#fff"/>
+<g font-family="sans-serif" fill="#172338">
+<text x="24" y="28" font-size="18">ServeRest local — comparação dos cenários</text>
+<text x="24" y="52" font-size="13">Azul: 1 VU · Laranja: progressivo até 10 VUs</text>
+<text x="24" y="83" font-size="14">Vazão média (req/s)</text>
+<rect x="105" y="91" width="93.38" height="18" rx="3" fill="#2563eb"/>
+<text x="24" y="105" font-size="12">Cenário 1</text>
+<text x="208.38" y="105" font-size="12">1,99</text>
+<rect x="105" y="117" width="485.00" height="18" rx="3" fill="#b85c00"/>
+<text x="24" y="131" font-size="12">Cenário 2</text>
+<text x="600.00" y="131" font-size="12">10,31</text>
+<text x="24" y="175" font-size="14">Tempo médio (ms)</text>
+<rect x="105" y="183" width="485.00" height="18" rx="3" fill="#2563eb"/>
+<text x="24" y="197" font-size="12">Cenário 1</text>
+<text x="600.00" y="197" font-size="12">2,77</text>
+<rect x="105" y="209" width="308.91" height="18" rx="3" fill="#b85c00"/>
+<text x="24" y="223" font-size="12">Cenário 2</text>
+<text x="423.91" y="223" font-size="12">1,77</text>
+<text x="24" y="267" font-size="14">Percentil 95 (ms)</text>
+<rect x="105" y="275" width="485.00" height="18" rx="3" fill="#2563eb"/>
+<text x="24" y="289" font-size="12">Cenário 1</text>
+<text x="600.00" y="289" font-size="12">4,25</text>
+<rect x="105" y="301" width="395.77" height="18" rx="3" fill="#b85c00"/>
+<text x="24" y="315" font-size="12">Cenário 2</text>
+<text x="510.77" y="315" font-size="12">3,47</text>
+<text x="24" y="356" font-size="12">Escalas independentes por métrica. Uma execução por perfil; média de toda a execução.</text>
+</g></svg>

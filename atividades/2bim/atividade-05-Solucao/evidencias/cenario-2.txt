@@ -1,0 +1,56 @@
+Inicio: 2026-11-06T13:54:40.416917-03:00
+Comando: k6 run --quiet --no-color --summary-export=evidencias/cenario-2.json cenario-2.js
+
+
+  █ THRESHOLDS 
+
+    checks
+    ✓ 'rate==1' rate=100.00%
+
+    http_req_duration
+    ✓ 'p(95)<500' p(95)=3.46ms
+
+      {endpoint:produtos}
+      ✓ 'p(95)<500' p(95)=4.04ms
+
+      {endpoint:usuarios}
+      ✓ 'p(95)<500' p(95)=2.09ms
+
+    http_req_failed
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 1452    20.623436/s
+    checks_succeeded...: 100.00% 1452 out of 1452
+    checks_failed......: 0.00%   0 out of 1452
+
+    ✓ GET /produtos: status 200
+    ✓ GET /produtos: lista e quantidade validas
+    ✓ GET /usuarios: status 200
+    ✓ GET /usuarios: lista e quantidade validas
+
+    HTTP
+    http_req_duration..............: avg=1.76ms min=242µs med=1.34ms max=57.27ms p(90)=3.04ms p(95)=3.46ms
+      { endpoint:produtos }........: avg=2.39ms min=554µs med=1.97ms max=57.27ms p(90)=3.42ms p(95)=4.04ms
+      { endpoint:usuarios }........: avg=1.13ms min=242µs med=1.04ms max=3.64ms  p(90)=1.78ms p(95)=2.09ms
+      { expected_response:true }...: avg=1.76ms min=242µs med=1.34ms max=57.27ms p(90)=3.04ms p(95)=3.46ms
+    http_req_failed................: 0.00%  0 out of 726
+    http_reqs......................: 726    10.311718/s
+
+    EXECUTION
+    iteration_duration.............: avg=1s     min=1s    med=1s     max=1.06s   p(90)=1s     p(95)=1s    
+    iterations.....................: 363    5.155859/s
+    vus............................: 1      min=1        max=10
+    vus_max........................: 10     min=10       max=10
+
+    NETWORK
+    data_received..................: 554 kB 7.9 kB/s
+    data_sent......................: 57 kB  804 B/s
+
+
+
+
+exit_code=0
+Fim: 2026-11-06T13:55:51.368192-03:00

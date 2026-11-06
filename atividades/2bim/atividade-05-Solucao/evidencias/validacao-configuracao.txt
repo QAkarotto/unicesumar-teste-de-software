@@ -1,0 +1,9 @@
+k6 inspect cenario-1.js: exit_code=0; sem avisos
+k6 inspect cenario-2.js: exit_code=0; sem avisos
+BASE_URL=https://serverest.dev: rejeitada na inicializacao; exit_code=107; nenhuma requisicao executada (inspect)
+BASE_URL=http://serverest.dev: rejeitada na inicializacao; exit_code=107; nenhuma requisicao executada (inspect)
+BASE_URL=http://localhost:3000@serverest.dev: rejeitada na inicializacao; exit_code=107; nenhuma requisicao executada (inspect)
+BASE_URL=http://localhost:3000/produtos: rejeitada na inicializacao; exit_code=107; nenhuma requisicao executada (inspect)
+BASE_URL=http://localhost:3000: configuracao aceita (inspect; sem requisicoes)
+BASE_URL=http://127.0.0.1:3000/: configuracao aceita (inspect; sem requisicoes)
+BASE_URL=http://[::1]:3000: configuracao aceita (inspect; sem requisicoes)
