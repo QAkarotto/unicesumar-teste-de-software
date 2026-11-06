@@ -1,24 +1,70 @@
-# unicesumar-teste-de-software
-Repositório utilizado na disciplina de Projeto, Implementação e Teste de Software do curso de Engenharia de Software da Unicesumar Ponta Grossa
+# Atividade 04 - 2BIM: Testes E2E com Playwright (ServeRest Front)
 
-# Materiais
+Testes automatizados End-to-End com **Playwright** (`@playwright/test`, JavaScript) para o
+[ServeRest Front](https://front.serverest.dev/).
 
-- ## [Mind Map](https://app.xmind.com/share/0ThrBL00) da Disciplina
+## Cenários implementados
 
-# Materiais Complementares
-- ## Curso de Git e GitHub do Goku
-    - [Instruções para configuração de ambiente e atividades das aulas](https://booming-blouse-e16.notion.site/390cf9ad8d508083ad3de85713c19a4a?v=390cf9ad8d5080349a8b000ccb843083&pvs=143)
-    - [Aulas gravadas](https://drive.google.com/drive/folders/1jcjCtkjueHFcE28LDyLnI9Dx-F3WBIlF?usp=sharing)
-    - [Formulário para ter acesso ao repositório do curso](https://docs.google.com/forms/d/e/1FAIpQLSetBGH_UzZEZFoJuQERJhLkpFImu__nDS-dW8UZHjtJruDnbw/viewform?usp=sharing&ouid=115907476640584517407)
+| # | Arquivo | O que valida |
+|---|---------|--------------|
+| 1 | `tests/cadastro-autenticacao.spec.js` | Cadastra usuário comum pela UI, faz login e valida a área do perfil (`/home`, sem acesso ao painel admin) |
+| 2 | `tests/produto-admin.spec.js` | Com a fixture de admin, cadastra produto pela UI, abre a listagem e confere nome, preço, descrição e quantidade |
+| 3 | `tests/login-invalido.spec.js` | Login inválido: mensagem de erro, permanece em `/login` e `/admin/home` continua bloqueado |
 
-- ## Curso de Testes de API do Goku
-    - [Aulas gravadas](https://drive.google.com/drive/folders/18D9ZJ1F-pVPy0S_DndA2mLCTLe7aBtkX?usp=sharing)
-    - [Mind Map utilizado no treinamento](https://app.xmind.com/share/FGhdypvt) - senha: dojodoqame
+## Estrutura
 
-## Manifesto Oficial
+```
+├── fixtures/admin.fixture.js   # test.extend(): fixtures `admin` e `paginaAdmin`
+├── helpers/dados.js            # geração de dados únicos (e-mail e nome de produto)
+├── helpers/api.js              # API só para preparar/limpar dados
+├── tests/*.spec.js             # os 3 cenários
+├── playwright.config.js
+└── package.json
+```
 
-### Lista de alunos que concordam que o Professor Goku é o melhor professor do universo
-Adicione seu nome, turma (ESOFT6S) e ano (2026) em ordem alfabética:
+## Decisões de projeto
 
-1. Aluno Exemplo (ESOFT6S - 2026)
-2. 
+- **Fixture personalizada** (`test.extend`): cria um administrador único via API, faz login
+  pela interface e entrega `paginaAdmin` já autenticada ao teste de produto. O admin é removido ao final.
+- **Seletores estáveis**: `page.getByTestId()` em tudo que possui `data-testid`. A tabela de
+  produtos e o alerta de erro não têm `data-testid` no front, então usei `getByRole('row')` e a classe `.alert-secondary`.
+- **Dados únicos**: e-mail e nome de produto usam timestamp + sufixo aleatório.
+- **Independência**: cada teste cria e remove seus próprios dados; nada depende de outro teste.
+- **Sem esperas fixas**: nenhum `waitForTimeout()`; apenas auto-wait e `expect` com retry.
+- **API apenas como apoio**: criar/remover usuário e produto. As ações principais ocorrem na interface.
+
+## Como executar
+
+Pré-requisito: **Node.js 18 ou superior** (`node -v`).
+
+```bash
+# 1. instalar dependências
+npm install
+
+# 2. baixar o navegador usado pelo Playwright
+npx playwright install chromium
+
+# 3. rodar os testes
+npx playwright test
+
+# 4. abrir o relatório HTML
+npx playwright show-report
+```
+
+Outras opções: `npx playwright test --headed` (vê o navegador), `npx playwright test --ui` (modo interativo),
+`npx playwright test tests/login-invalido.spec.js` (um arquivo só).
+
+No Linux, se faltar alguma biblioteca do sistema: `npx playwright install --with-deps chromium`.
+
+## Evidência da execução
+
+Após rodar, os resultados ficam em:
+
+- `playwright-report/index.html` — relatório HTML (abra com `npx playwright show-report`)
+- `evidencias/resultado.json` — resultado em JSON
+
+Cole aqui o resultado do terminal e/ou um print do relatório:
+
+```
+(cole a saída de `npx playwright test` aqui)
+```

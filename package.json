@@ -1,0 +1,14 @@
+{
+  "name": "serverest-e2e-playwright",
+  "version": "1.0.0",
+  "description": "Atividade 04 - 2BIM: Automação de testes E2E com Playwright no ServeRest Front",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}
