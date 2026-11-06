@@ -1,0 +1,1 @@
+use: { baseURL: 'https://front.serverest.dev' }
