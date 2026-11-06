@@ -1,21 +1,14 @@
 {
-  "name": "unicesumar-teste-de-software",
+  "name": "serverest-e2e-playwright",
   "version": "1.0.0",
-  "description": "Automação de Testes com Playwright e ServeRest",
-  "main": "index.js",
+  "description": "Atividade 04 - 2BIM: Automação de testes E2E com Playwright no ServeRest Front",
   "scripts": {
-    "test": "npx playwright test",
-    "test:api": "npx playwright test tests/api",
-    "test:web": "npx playwright test tests/web",
-    "test:ui": "npx playwright test --ui"
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "@faker-js/faker": "^9.0.0",
-    "@playwright/test": "^1.48.0",
-    "@types/node": "^22.0.0",
-    "typescript": "^5.0.0"
+    "@playwright/test": "^1.49.0"
   }
 }
