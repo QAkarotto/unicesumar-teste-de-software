@@ -2,10 +2,12 @@
 
 - **Disciplina:** Teste de Software
 - **Curso:** Engenharia de Software — Unicesumar
-- **Aluno:** Luiz Kaike
+- **Aluno:** Luiz Kaike A.F e Adriano Linpias Roca
 - **Ferramenta:** Grafana k6 2.3.0
 - **API:** ServeRest v3.2.2
+
 ---
+
 ## 1. Pesquisa sobre k6
 
 ### 1.1 Qual é a finalidade dos testes de desempenho e como os testes de carga se diferenciam dos testes funcionais?
@@ -40,6 +42,8 @@ Portanto, os checks verificam os resultados das operações, enquanto os thresho
 - **http_req_failed:** representa a taxa de requisições que falharam durante a execução.
 - **http_reqs:** representa a quantidade total de requisições HTTP realizadas pelo teste.
 
+Essas métricas ajudam a identificar problemas de velocidade, falhas e volume de utilização da API.
+
 ### 1.5 Qual é a importância do percentil 95 (p95) na análise dos tempos de resposta?
 
 O percentil 95 (p95) representa o tempo de resposta abaixo ou igual ao qual 95% das requisições foram concluídas.
@@ -47,6 +51,7 @@ O percentil 95 (p95) representa o tempo de resposta abaixo ou igual ao qual 95% 
 Por exemplo, se o p95 for de 500 ms, significa que 95% das requisições foram concluídas em até 500 milissegundos, enquanto os outros 5% demoraram mais.
 
 Essa métrica é importante porque permite avaliar o comportamento da maioria das requisições, considerando também aquelas que apresentam tempos de resposta mais elevados.
+
 ---
 
 ## 2. Preparação do ambiente
@@ -245,6 +250,7 @@ O percentil 95 também apresentou uma pequena redução, passando de 2,09 ms par
 Também não foram registradas requisições com falha e todos os checks foram aprovados.
 
 Com esses resultados, podemos observar que a API ServeRest conseguiu atender ao aumento de carga nas condições utilizadas, sem apresentar degradação significativa no tempo de resposta.
+
 ---
 
 ## 5. Limitações dos testes
