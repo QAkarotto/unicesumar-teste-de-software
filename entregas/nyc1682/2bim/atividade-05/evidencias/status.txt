@@ -1,0 +1,6 @@
+GET http://localhost:3000/
+HTTP 200
+
+GET http://localhost:3000/status
+HTTP 200
+Título da página recebida: ServeRest Status

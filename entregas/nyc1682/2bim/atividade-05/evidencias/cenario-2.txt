@@ -1,0 +1,41 @@
+
+
+  █ THRESHOLDS 
+
+    checks
+    ✓ 'rate==1' rate=100.00%
+
+    http_req_duration
+    ✓ 'p(95)<500' p(95)=6.53ms
+
+    http_req_failed
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 412     5.123005/s
+    checks_succeeded...: 100.00% 412 out of 412
+    checks_failed......: 0.00%   0 out of 412
+
+    ✓ GET /produtos retorna 200
+    ✓ GET /usuarios retorna 200
+
+    HTTP
+    http_req_duration..............: avg=2.09ms min=509µs med=1.48ms max=7.68ms p(95)=6.53ms
+      { expected_response:true }...: avg=2.09ms min=509µs med=1.48ms max=7.68ms p(95)=6.53ms
+    http_req_failed................: 0.00%  0 out of 412
+    http_reqs......................: 412    5.123005/s
+
+    EXECUTION
+    iteration_duration.............: avg=2s     min=2s    med=2s     max=2.02s  p(95)=2.01s 
+    iterations.....................: 206    2.561503/s
+    vus............................: 1      min=1        max=10
+    vus_max........................: 10     min=10       max=10
+
+    NETWORK
+    data_received..................: 314 kB 3.9 kB/s
+    data_sent......................: 32 kB  400 B/s
+
+
+

@@ -1,0 +1,21 @@
+Data: 2026-11-08 13:40:39 -03:00
+v24.21.0
+11.19.0
+k6.exe v2.3.0 (commit/e088784614, go1.26.8, windows/amd64)
+ServeRest: 3.2.2 (NPM, execução local)
+
+Caption : Microsoft Windows 11 Pro
+Version : 10.0.26300
+
+
+
+Name                      : AMD Ryzen 5 4600G with Radeon Graphics
+NumberOfLogicalProcessors : 12
+
+
+
+TotalPhysicalMemory : 16526946304
+
+
+produtos : quantidade=2
+usuarios : quantidade=1
