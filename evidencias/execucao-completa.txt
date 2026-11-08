@@ -1,0 +1,20 @@
+
+Running 11 tests using 2 workers
+
+(node:14288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2316) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\api\login.spec.ts:4:5 › autentica com credenciais válidas (720ms)
+  ok  3 tests\api\login.spec.ts:9:5 › rejeita senha inválida de usuário existente (673ms)
+  ok  4 tests\api\produtos.spec.ts:4:5 › lista produtos e valida o formato da resposta (385ms)
+  ok  2 tests\api\carrinhos.spec.ts:3:5 › cria carrinho, consulta e cancela restaurando o estoque (2.1s)
+  ok  5 tests\api\produtos.spec.ts:12:5 › rejeita cadastro de produto sem autenticação (336ms)
+  ok  6 tests\api\produtos.spec.ts:20:5 › cadastra produto autenticado e consulta os dados persistidos (1.2s)
+  ok  7 tests\api\produtos.spec.ts:26:5 › atualiza produto autenticado e valida o estado final (1.4s)
+  ok  8 tests\api\usuarios.spec.ts:4:5 › lista usuários e valida o formato da resposta (558ms)
+  ok  9 tests\api\usuarios.spec.ts:12:5 › cadastra usuário dinâmico e consulta os dados persistidos (666ms)
+  ok 10 tests\api\usuarios.spec.ts:18:5 › rejeita cadastro com email inválido (455ms)
+  ok 11 tests\api\usuarios.spec.ts:26:5 › não permite email duplicado e mantém o usuário original (873ms)
+
+  11 passed (6.2s)
