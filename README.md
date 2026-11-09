@@ -256,3 +256,52 @@ Na execução final da suíte completa, foram obtidos os seguintes resultados:
 
 Todos os 15 testes foram executados com sucesso, sem falhas.
 
+---
+
+---
+
+## Atividade 05 - Testes de Desempenho com k6
+
+Nesta atividade foram realizados testes de desempenho na API ServeRest utilizando a ferramenta k6, com execução exclusivamente em ambiente local por meio do Docker.
+
+### Cenários implementados
+
+- **Carga inicial:** 1 usuário virtual durante 30 segundos.
+- **Carga progressiva:** aumento gradual de 1 para 5 e 10 usuários virtuais, seguido da redução até zero.
+
+### Endpoints avaliados
+
+- GET /produtos
+- GET /usuarios
+
+### Resultados
+
+| Métrica | Carga inicial | Carga progressiva |
+|---|---:|---:|
+| Requisições HTTP | 60 | 510 |
+| Checks aprovados | 100% | 100% |
+| Tempo médio | 12,88 ms | 6,62 ms |
+| p95 | 26,12 ms | 15,56 ms |
+| Taxa de falhas | 0% | 0% |
+
+### Arquivos da atividade
+
+Os scripts, resultados e relatório estão disponíveis na pasta `performance/`:
+
+- `carga-inicial.js`
+- `carga-progressiva.js`
+- `resultados-carga-inicial.json`
+- `resultados-carga-progressiva.json`
+- `relatorio-desempenho.md`
+
+### Execução dos testes
+
+Com o ServeRest local iniciado na porta 3000, execute:
+
+```bash
+k6 run performance/carga-inicial.js
+k6 run performance/carga-progressiva.js
+```
+
+Todos os testes foram executados contra `http://localhost:3000`, sem utilizar a API pública para testes de carga.
+
