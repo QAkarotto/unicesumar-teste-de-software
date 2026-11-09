@@ -1,0 +1,140 @@
+{
+    "root_group": {
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {
+                "GET /produtos retorna 200": {
+                    "id": "eadb62e8382ee06399b0fc54f24829f9",
+                    "passes": 310,
+                    "fails": 0,
+                    "name": "GET /produtos retorna 200",
+                    "path": "::GET /produtos retorna 200"
+                },
+                "GET /usuarios retorna 200": {
+                    "fails": 0,
+                    "name": "GET /usuarios retorna 200",
+                    "path": "::GET /usuarios retorna 200",
+                    "id": "d8a02ff77bf926426a93ed0ae098efe9",
+                    "passes": 310
+                }
+            }
+    },
+    "metrics": {
+        "http_req_waiting": {
+            "avg": 1.3437261064516146,
+            "min": 0.432779,
+            "med": 1.0468955,
+            "max": 12.093845,
+            "p(90)": 2.137049700000001,
+            "p(95)": 3.0256285999999997
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 620,
+            "thresholds": {
+                "rate<0.01": false
+            },
+            "value": 0
+        },
+        "data_sent": {
+            "count": 48360,
+            "rate": 687.9500842253583
+        },
+        "checks": {
+            "passes": 620,
+            "fails": 0,
+            "value": 1
+        },
+        "vus_max": {
+            "value": 10,
+            "min": 10,
+            "max": 10
+        },
+        "vus": {
+            "value": 1,
+            "min": 1,
+            "max": 10
+        },
+        "http_req_receiving": {
+            "p(95)": 0.13201359999999995,
+            "avg": 0.07929248387096768,
+            "min": 0.034624,
+            "med": 0.067466,
+            "max": 0.902459,
+            "p(90)": 0.10464430000000002
+        },
+        "http_req_connecting": {
+            "max": 0.419741,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.0030420612903225806,
+            "min": 0,
+            "med": 0
+        },
+        "iteration_duration": {
+            "avg": 1003.8573721032255,
+            "min": 1001.979439,
+            "med": 1003.4337005,
+            "max": 1017.394617,
+            "p(90)": 1005.6531854,
+            "p(95)": 1006.94474025
+        },
+        "http_req_duration": {
+            "p(90)": 2.2824691000000006,
+            "p(95)": 3.1387399499999997,
+            "avg": 1.445337146774193,
+            "min": 0.482671,
+            "med": 1.1349390000000001,
+            "max": 12.23581,
+            "thresholds": {
+                "p(95)<500": false
+            }
+        },
+        "http_req_sending": {
+            "avg": 0.02231855645161293,
+            "min": 0.006913,
+            "med": 0.0169015,
+            "max": 0.578371,
+            "p(90)": 0.032648,
+            "p(95)": 0.041677049999999986
+        },
+        "http_reqs": {
+            "count": 620,
+            "rate": 8.81987287468408
+        },
+        "http_req_duration{expected_response:true}": {
+            "p(95)": 3.1387399499999997,
+            "avg": 1.445337146774193,
+            "min": 0.482671,
+            "med": 1.1349390000000001,
+            "max": 12.23581,
+            "p(90)": 2.2824691000000006
+        },
+        "data_received": {
+            "count": 473060,
+            "rate": 6729.563003383953
+        },
+        "http_req_blocked": {
+            "p(95)": 0.010538049999999992,
+            "avg": 0.014693029032258054,
+            "min": 0.002635,
+            "med": 0.0051695000000000005,
+            "max": 3.091424,
+            "p(90)": 0.007993000000000002
+        },
+        "http_req_tls_handshaking": {
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0,
+            "min": 0,
+            "med": 0,
+            "max": 0
+        },
+        "iterations": {
+            "count": 310,
+            "rate": 4.40993643734204
+        }
+    }
+}
