@@ -1,0 +1,16 @@
+{
+  "name": "atividade-05-k6-serverest",
+  "version": "1.0.0",
+  "description": "Testes de desempenho com k6 na API ServeRest local (carga inicial e carga progressiva)",
+  "private": true,
+  "scripts": {
+    "serverest": "npx serverest@latest",
+    "cenario1": "node scripts/executar.js 1",
+    "cenario2": "node scripts/executar.js 2",
+    "testes": "node scripts/executar.js todos",
+    "comparar": "node scripts/comparar.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

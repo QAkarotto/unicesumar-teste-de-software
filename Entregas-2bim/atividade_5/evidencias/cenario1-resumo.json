@@ -1,0 +1,205 @@
+{
+    "metrics": {
+        "iteration_duration": {
+            "p(95)": 1011.4314499999999,
+            "p(99)": 1024.103026,
+            "avg": 1004.1604533333334,
+            "min": 1002.2088,
+            "med": 1002.78815,
+            "max": 1027.2468,
+            "p(90)": 1003.81895
+        },
+        "http_req_duration{endpoint:usuarios}": {
+            "p(90)": 1.32985,
+            "p(95)": 1.4916549999999997,
+            "p(99)": 12.283849000000012,
+            "avg": 1.3407866666666663,
+            "min": 0.5021,
+            "med": 0.8563000000000001,
+            "max": 16.675,
+            "thresholds": {
+                "p(95)<300": false
+            }
+        },
+        "http_req_tls_handshaking": {
+            "p(90)": 0,
+            "p(95)": 0,
+            "p(99)": 0,
+            "avg": 0,
+            "min": 0,
+            "med": 0,
+            "max": 0
+        },
+        "vus_max": {
+            "max": 1,
+            "value": 1,
+            "min": 1
+        },
+        "http_req_duration{expected_response:true}": {
+            "avg": 1.7744433333333334,
+            "min": 0.5021,
+            "med": 1.4509500000000002,
+            "max": 16.675,
+            "p(90)": 2.0600400000000003,
+            "p(95)": 2.516619999999998,
+            "p(99)": 15.179585999999992
+        },
+        "http_req_failed": {
+            "fails": 60,
+            "passes": 0,
+            "thresholds": {
+                "rate<0.01": false
+            },
+            "value": 0
+        },
+        "http_reqs": {
+            "count": 60,
+            "rate": 1.9917135686442886
+        },
+        "http_req_duration": {
+            "p(95)": 2.516619999999998,
+            "p(99)": 15.179585999999992,
+            "avg": 1.7744433333333334,
+            "min": 0.5021,
+            "med": 1.4509500000000002,
+            "max": 16.675,
+            "p(90)": 2.0600400000000003,
+            "thresholds": {
+                "p(95)<300": false,
+                "avg<150": false
+            }
+        },
+        "http_req_duration{endpoint:produtos}": {
+            "avg": 2.2081,
+            "min": 1.3327,
+            "med": 1.6963,
+            "max": 14.1404,
+            "p(90)": 2.2021400000000004,
+            "p(95)": 2.921819999999998,
+            "p(99)": 10.99276900000001,
+            "thresholds": {
+                "p(95)<300": false
+            }
+        },
+        "http_req_connecting": {
+            "p(99)": 0,
+            "avg": 0,
+            "min": 0,
+            "med": 0,
+            "max": 0,
+            "p(90)": 0,
+            "p(95)": 0
+        },
+        "http_req_sending": {
+            "med": 0,
+            "max": 0,
+            "p(90)": 0,
+            "p(95)": 0,
+            "p(99)": 0,
+            "avg": 0,
+            "min": 0
+        },
+        "iterations": {
+            "count": 30,
+            "rate": 0.9958567843221443
+        },
+        "vus": {
+            "value": 1,
+            "min": 1,
+            "max": 1
+        },
+        "http_req_blocked": {
+            "p(90)": 0,
+            "p(95)": 0,
+            "p(99)": 2.7307229999999776,
+            "avg": 0.111005,
+            "min": 0,
+            "med": 0,
+            "max": 6.6603
+        },
+        "data_sent": {
+            "count": 6240,
+            "rate": 207.13821113900602
+        },
+        "data_received": {
+            "rate": 1519.6774528755923,
+            "count": 45780
+        },
+        "http_req_waiting": {
+            "max": 16.2614,
+            "p(90)": 1.7588400000000002,
+            "p(95)": 2.0422049999999987,
+            "p(99)": 15.010009999999992,
+            "avg": 1.3595433333333333,
+            "min": 0.5021,
+            "med": 0.6799
+        },
+        "http_req_receiving": {
+            "min": 0,
+            "med": 0.3721,
+            "max": 1.0056,
+            "p(90)": 0.96953,
+            "p(95)": 0.99293,
+            "p(99)": 1.00265,
+            "avg": 0.41490000000000005
+        },
+        "checks": {
+            "passes": 180,
+            "fails": 0,
+            "thresholds": {
+                "rate>0.99": false
+            },
+            "value": 1
+        }
+    },
+    "root_group": {
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {
+                "GET /produtos: status 200": {
+                    "passes": 30,
+                    "fails": 0,
+                    "name": "GET /produtos: status 200",
+                    "path": "::GET /produtos: status 200",
+                    "id": "8dd68e3c1ec6623365aef6e438265e97"
+                },
+                "GET /produtos: corpo com a lista de produtos": {
+                    "name": "GET /produtos: corpo com a lista de produtos",
+                    "path": "::GET /produtos: corpo com a lista de produtos",
+                    "id": "efe1ae52d1a7ff2b12129267a765e22b",
+                    "passes": 30,
+                    "fails": 0
+                },
+                "GET /produtos: quantidade igual ao total da lista": {
+                    "name": "GET /produtos: quantidade igual ao total da lista",
+                    "path": "::GET /produtos: quantidade igual ao total da lista",
+                    "id": "2c25a205779c410ba6885ba10d502b7e",
+                    "passes": 30,
+                    "fails": 0
+                },
+                "GET /usuarios: status 200": {
+                    "path": "::GET /usuarios: status 200",
+                    "id": "f249bf60db9e15ac84a86ce80b34e4fb",
+                    "passes": 30,
+                    "fails": 0,
+                    "name": "GET /usuarios: status 200"
+                },
+                "GET /usuarios: corpo com a lista de usuarios": {
+                    "name": "GET /usuarios: corpo com a lista de usuarios",
+                    "path": "::GET /usuarios: corpo com a lista de usuarios",
+                    "id": "349d866789e795887c5bce7c2216d317",
+                    "passes": 30,
+                    "fails": 0
+                },
+                "GET /usuarios: quantidade igual ao total da lista": {
+                    "name": "GET /usuarios: quantidade igual ao total da lista",
+                    "path": "::GET /usuarios: quantidade igual ao total da lista",
+                    "id": "b697a26f98ecd02ae71dcedc4a73a0b5",
+                    "passes": 30,
+                    "fails": 0
+                }
+            },
+        "name": "",
+        "path": ""
+    }
+}
