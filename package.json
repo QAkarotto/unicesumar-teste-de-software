@@ -1,0 +1,27 @@
+{
+  "name": "testes-software",
+  "version": "1.0.0",
+  "description": "Repositório utilizado na disciplina de Projeto, Implementação e Teste de Software do curso de Engenharia de Software da Unicesumar Ponta Grossa",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:api": "playwright test --project=api"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QAkarotto/unicesumar-teste-de-software.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/QAkarotto/unicesumar-teste-de-software/issues"
+  },
+  "homepage": "https://github.com/QAkarotto/unicesumar-teste-de-software#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
+  }
+}
