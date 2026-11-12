@@ -1,0 +1,6 @@
+﻿Data da execução: 2026-11-11
+BaseURL: http://localhost:3000
+http://localhost:3000/status -> HTTP 200
+http://localhost:3000/produtos -> HTTP 200
+http://localhost:3000/usuarios -> HTTP 200
+k6: v2.3.0
