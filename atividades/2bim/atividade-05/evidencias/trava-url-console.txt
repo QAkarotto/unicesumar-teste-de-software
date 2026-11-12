@@ -1,0 +1,1 @@
+time="2026-11-11T21:03:48-03:00" level=error msg="Error: Teste de carga não deve rodar contra serverest.dev. Use ambiente local.\n\tat file:///C:/Users/Camilli/projetos/unicesumar-teste-de-software/atividades/2bim/atividade-05/k6/comum.js:8:9(27)\n" hint="script exception" source=stacktrace
