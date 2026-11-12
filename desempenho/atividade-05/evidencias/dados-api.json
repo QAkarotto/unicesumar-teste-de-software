@@ -1,0 +1,17 @@
+{
+  "baseURL": "http://localhost:3000",
+  "serverest": "3.2.2",
+  "obtidoAposOsCenarios": true,
+  "consultas": {
+    "produtos": {
+      "status": 200,
+      "quantidade": 2,
+      "tamanhoDaLista": 2
+    },
+    "usuarios": {
+      "status": 200,
+      "quantidade": 1,
+      "tamanhoDaLista": 1
+    }
+  }
+}
