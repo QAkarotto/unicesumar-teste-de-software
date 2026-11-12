@@ -1,24 +1,76 @@
-# unicesumar-teste-de-software
-Repositório utilizado na disciplina de Projeto, Implementação e Teste de Software do curso de Engenharia de Software da Unicesumar Ponta Grossa
+# Automação de Testes de API com Playwright
 
-# Materiais
+## Sobre a atividade
 
-- ## [Mind Map](https://app.xmind.com/share/0ThrBL00) da Disciplina
+Este projeto foi desenvolvido para a Atividade 01 do 2º bimestre da disciplina de Testes de Software da UniCesumar.
 
-# Materiais Complementares
-- ## Curso de Git e GitHub do Goku
-    - [Instruções para configuração de ambiente e atividades das aulas](https://booming-blouse-e16.notion.site/390cf9ad8d508083ad3de85713c19a4a?v=390cf9ad8d5080349a8b000ccb843083&pvs=143)
-    - [Aulas gravadas](https://drive.google.com/drive/folders/1jcjCtkjueHFcE28LDyLnI9Dx-F3WBIlF?usp=sharing)
-    - [Formulário para ter acesso ao repositório do curso](https://docs.google.com/forms/d/e/1FAIpQLSetBGH_UzZEZFoJuQERJhLkpFImu__nDS-dW8UZHjtJruDnbw/viewform?usp=sharing&ouid=115907476640584517407)
+O objetivo é configurar o Playwright com TypeScript e desenvolver testes automatizados para validar a API ServeRest, mantendo a estrutura preparada para futuros testes Web.
 
-- ## Curso de Testes de API do Goku
-    - [Aulas gravadas](https://drive.google.com/drive/folders/18D9ZJ1F-pVPy0S_DndA2mLCTLe7aBtkX?usp=sharing)
-    - [Mind Map utilizado no treinamento](https://app.xmind.com/share/FGhdypvt) - senha: dojodoqame
+## Tecnologias utilizadas
 
-## Manifesto Oficial
+- Node.js
+- npm
+- TypeScript
+- Playwright Test
+- API ServeRest
 
-### Lista de alunos que concordam que o Professor Goku é o melhor professor do universo
-Adicione seu nome, turma (ESOFT6S) e ano (2026) em ordem alfabética:
+## Estrutura do projeto
 
-1. Aluno Exemplo (ESOFT6S - 2026)
-2. 
+```text
+unicesumar-teste-de-software/
+├── tests/
+│   ├── api/
+│   │   └── serverest.spec.ts
+│   └── web/
+├── playwright.config.ts
+├── package.json
+├── package-lock.json
+└── README.md
+```
+
+## Cenários automatizados
+
+Foram implementados seis testes de API:
+
+1. Listagem de usuários.
+2. Listagem de produtos.
+3. Listagem de carrinhos.
+4. Validação dos campos dos produtos.
+5. Validação dos campos dos usuários.
+6. Validação da rejeição de credenciais inválidas no login.
+
+Os testes verificam o status HTTP, informações do corpo da resposta e condições de negócio.
+
+## Instalação
+
+É necessário ter o Node.js e o npm instalados.
+
+Clone o repositório e acesse a pasta do projeto. Em seguida, execute:
+
+```bash
+npm install
+```
+
+## Execução dos testes
+
+Para executar todos os testes:
+
+```bash
+npm test
+```
+
+Para executar somente os testes de API:
+
+```bash
+npm run test:api
+```
+
+Para executar os futuros testes Web:
+
+```bash
+npm run test:web
+```
+
+## API utilizada
+
+ServeRest: https://serverest.dev/
