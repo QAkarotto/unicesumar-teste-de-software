@@ -1,0 +1,7 @@
+node_modules/
+serverest/node_modules/
+coverage/
+serverest/coverage-unit/
+serverest/.nyc_output/
+test-results/
+playwright-report/
