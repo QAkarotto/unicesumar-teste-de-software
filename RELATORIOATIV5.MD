@@ -1,115 +1,156 @@
-# RELATÓRIO – ATIVIDADE 05
-## Testes de Desempenho com k6 no ServeRest
+# RELATÓRIO DE TESTES DE DESEMPENHO – SERVEREST
 
-### 1. Introdução
+## 1. Introdução
 
-Este trabalho apresenta a implementação de testes de desempenho na API ServeRest utilizando a ferramenta k6.
+Este relatório apresenta os resultados dos testes de desempenho realizados na API ServeRest utilizando a ferramenta k6, da Grafana.
 
-Foram desenvolvidos dois cenários de teste com o objetivo de avaliar o comportamento dos endpoints `/produtos` e `/usuarios` em diferentes condições de carga.
+O objetivo foi avaliar o comportamento da API durante requisições aos endpoints `/produtos` e `/usuarios`, observando principalmente o tempo de resposta, a quantidade de requisições realizadas e a ocorrência de falhas.
 
-Os testes foram planejados para observar métricas como tempo de resposta, quantidade de requisições, taxa de falhas e percentil 95 (p95).
+Foram realizados dois cenários: um teste de carga inicial, utilizando apenas um usuário virtual, e um teste de carga progressiva, com aumento gradual até dez usuários virtuais.
 
-### 2. Ambiente de testes
+Os testes foram executados em ambiente local, utilizando o endereço `http://localhost:3000`.
 
-| Item | Configuração |
-|---|---|
-| Ferramenta de testes | k6 |
-| API | ServeRest |
-| Ambiente | Local |
-| Endpoints | GET /produtos e GET /usuarios |
-| Linguagem | JavaScript |
-| Endereço-base | http://localhost:3000 |
+## 2. Ambiente de testes
 
-### 3. Cenário 1 – Carga inicial
+As ferramentas e tecnologias utilizadas foram:
 
-O primeiro cenário foi configurado com 1 usuário virtual durante 30 segundos.
+- ServeRest: API utilizada nos testes.
+- Node.js e NPM: execução local do ServeRest.
+- k6: ferramenta utilizada para os testes de desempenho.
+- Windows e PowerShell: ambiente de execução.
 
-Durante a execução, são realizadas requisições aos endpoints `/produtos` e `/usuarios`, verificando se ambos retornam o código HTTP 200.
+Os endpoints avaliados foram:
 
-Também foram definidos os seguintes thresholds:
+- `GET /produtos`
+- `GET /usuarios`
 
-- p95 inferior a 1000 ms.
-- Taxa de requisições malsucedidas inferior a 1%.
+Ambos retornaram status HTTP 200 durante a verificação inicial, confirmando que estavam disponíveis para os testes.
 
-#### 3.1. Resultados
+## 3. Cenário 1 – Teste de carga inicial
 
-**A preencher após a execução do teste.**
+O primeiro cenário foi configurado com apenas um usuário virtual (VU), durante 30 segundos.
 
-| Métrica | Resultado |
-|---|---|
+Durante a execução, foram realizadas requisições aos endpoints de produtos e usuários, verificando se ambos retornavam o status HTTP 200.
+
+### Resultados obtidos
+
+| Indicador | Resultado |
+|---|---:|
 | Usuários virtuais | 1 |
 | Duração | 30 segundos |
-| Total de requisições | A preencher |
-| Requisições por segundo | A preencher |
-| Tempo médio de resposta | A preencher |
-| p95 | A preencher |
-| Taxa de falhas | A preencher |
-| Checks aprovados | A preencher |
-| Thresholds | A preencher |
+| Iterações | 30 |
+| Total de requisições | 60 |
+| Requisições por segundo | 1,99 |
+| Tempo médio de resposta | 1,11 ms |
+| Tempo mínimo | 0,50 ms |
+| Tempo máximo | 1,68 ms |
+| Percentil 95 (p95) | 1,63 ms |
+| Falhas HTTP | 0% |
+| Checks aprovados | 60 de 60 (100%) |
 
-#### 3.2. Evidência
+### Análise
 
-Inserir aqui a captura de tela da execução do cenário 1.
+O primeiro cenário apresentou resultados positivos. Todas as verificações foram aprovadas e não houve falhas nas requisições realizadas.
 
-### 4. Cenário 2 – Carga progressiva
+O tempo médio de resposta foi de 1,11 ms, enquanto o percentil 95 ficou em 1,63 ms. Isso significa que 95% das requisições foram concluídas em até aproximadamente 1,63 ms.
 
-O segundo cenário foi configurado para aumentar gradualmente a quantidade de usuários virtuais, passando por 1, 5 e 10 VUs. Após atingir o máximo de usuários, a carga é reduzida gradualmente até chegar a zero.
+Os dois thresholds configurados também foram aprovados:
 
-A duração total planejada é de 70 segundos.
+- `http_req_duration`: p95 inferior a 1000 ms.
+- `http_req_failed`: taxa de falhas inferior a 1%.
 
-Os endpoints `/produtos` e `/usuarios` continuam sendo consultados durante a execução, com verificações de status HTTP 200.
+O resultado demonstra que a API respondeu rapidamente durante o teste com um único usuário virtual.
 
-Os thresholds definidos foram:
+## 4. Cenário 2 – Teste de carga progressiva
 
-- p95 inferior a 1500 ms.
-- Taxa de requisições malsucedidas inferior a 1%.
+No segundo cenário, foi realizado um teste com aumento gradual da quantidade de usuários virtuais, chegando ao máximo de dez VUs.
 
-#### 4.1. Resultados
+A configuração utilizada foi:
 
-**A preencher após a execução do teste.**
+| Etapa | Duração | Usuários virtuais |
+|---|---:|---:|
+| Inicial | 10 segundos | 1 |
+| Aumento | 20 segundos | 5 |
+| Pico | 20 segundos | 10 |
+| Redução | 10 segundos | 5 |
+| Encerramento | 10 segundos | 0 |
 
-| Métrica | Resultado |
-|---|---|
-| Máximo de usuários virtuais | 10 |
+Durante todo o cenário, foram mantidas as requisições aos endpoints `/produtos` e `/usuarios`.
+
+### Resultados obtidos
+
+| Indicador | Resultado |
+|---|---:|
+| Usuários virtuais máximos | 10 |
 | Duração | 70 segundos |
-| Total de requisições | A preencher |
-| Requisições por segundo | A preencher |
-| Tempo médio de resposta | A preencher |
-| p95 | A preencher |
-| Taxa de falhas | A preencher |
-| Checks aprovados | A preencher |
-| Thresholds | A preencher |
+| Iterações | 310 |
+| Total de requisições | 620 |
+| Requisições por segundo | 8,83 |
+| Tempo médio de resposta | 1,08 ms |
+| Tempo mínimo | 0 ms (conforme saída do k6) |
+| Tempo máximo | 3,7 ms |
+| Percentil 95 (p95) | 2,09 ms |
+| Falhas HTTP | 0% |
+| Checks aprovados | 620 de 620 (100%) |
 
-#### 4.2. Evidência
+### Análise
 
-Inserir aqui a captura de tela da execução do cenário 2.
+Mesmo com o aumento da quantidade de usuários virtuais, a API manteve um bom desempenho durante a execução.
 
-### 5. Comparação dos cenários
+Foram realizadas 620 requisições, com uma média de 8,83 requisições por segundo. Todas as verificações foram aprovadas e não foram registradas falhas HTTP.
 
-**A preencher após a execução dos dois testes.**
+O tempo médio de resposta foi de 1,08 ms e o p95 ficou em 2,09 ms, permanecendo abaixo do limite de 1500 ms definido no threshold.
 
-A comparação deverá considerar:
+Dessa forma, o cenário progressivo também foi aprovado.
 
-- Diferenças na quantidade total de requisições.
-- Variação no tempo médio de resposta.
-- Comportamento do p95.
-- Alterações na taxa de falhas.
-- Aprovação ou reprovação dos thresholds.
+## 5. Comparação entre os cenários
 
-### 6. Análise dos resultados
+A comparação dos resultados permite observar como a API se comportou com o aumento da carga.
 
-Após a execução, será analisado se o aumento da quantidade de usuários virtuais provocou alterações no desempenho da API.
+| Indicador | Carga inicial | Carga progressiva |
+|---|---:|---:|
+| VUs máximos | 1 | 10 |
+| Duração | 30 s | 70 s |
+| Iterações | 30 | 310 |
+| Requisições | 60 | 620 |
+| Requisições por segundo | 1,99 | 8,83 |
+| Tempo médio | 1,11 ms | 1,08 ms |
+| p95 | 1,63 ms | 2,09 ms |
+| Falhas HTTP | 0% | 0% |
+| Checks aprovados | 100% | 100% |
 
-Também serão observados possíveis aumentos no tempo de resposta, ocorrência de falhas e mudanças na capacidade de processamento das requisições.
+É possível observar que o volume de requisições aumentou consideravelmente no segundo cenário, enquanto os tempos de resposta permaneceram próximos aos do primeiro teste.
 
-### 7. Limitações dos testes
+O p95 passou de 1,63 ms para 2,09 ms, uma diferença pequena considerando o aumento da quantidade de usuários virtuais.
 
-Os testes foram planejados para um ambiente local, com até 10 usuários virtuais. Portanto, os resultados representam o comportamento da API nas condições específicas utilizadas e não devem ser considerados uma representação de seu desempenho em produção.
+Os resultados indicam que, nas condições avaliadas, a API conseguiu lidar com o aumento da carga sem apresentar falhas ou uma degradação significativa no tempo de resposta.
 
-Além disso, o desempenho observado pode variar conforme os recursos disponíveis no computador, as condições do ambiente e outros processos em execução.
+## 6. Limitações dos testes
 
-### 8. Conclusão
+Apesar dos resultados positivos, é importante considerar algumas limitações.
 
-**A preencher após a análise dos resultados reais.**
+Os testes foram realizados localmente, utilizando uma quantidade máxima de dez usuários virtuais. Portanto, os resultados não representam necessariamente o comportamento da API em um ambiente de produção, com maior volume de acessos e diferentes condições de infraestrutura.
 
-A conclusão deverá apresentar o comportamento observado nos dois cenários, indicando se os critérios de desempenho estabelecidos foram atendidos e quais diferenças foram identificadas entre a carga inicial e a carga progressiva.
+Além disso, fatores como capacidade do computador, configuração do ambiente e disponibilidade de recursos podem influenciar os resultados.
+
+Para uma avaliação mais completa, seria necessário realizar testes com quantidades maiores de usuários, além de considerar cenários de estresse e períodos mais longos de execução.
+
+## 7. Conclusão
+
+A realização dos testes permitiu observar o comportamento da API ServeRest em diferentes condições de carga utilizando o k6.
+
+No primeiro cenário, com apenas um usuário virtual, todas as requisições foram concluídas com sucesso. No segundo, mesmo com o aumento gradual até dez usuários virtuais, a API manteve tempos de resposta baixos e não apresentou falhas HTTP.
+
+Os dois cenários atenderam aos thresholds definidos e tiveram 100% dos checks aprovados.
+
+Com isso, foi possível compreender melhor a importância dos testes de desempenho e como métricas como tempo médio de resposta, p95, taxa de falhas e requisições por segundo ajudam a avaliar o comportamento de uma aplicação.
+
+De forma geral, os resultados foram positivos para as condições testadas, embora não sejam suficientes para determinar os limites máximos de capacidade da API.
+
+## 8. Evidências
+
+As evidências dos testes devem ser armazenadas na pasta `evidencias/` do projeto:
+
+- `cenario1-carga-inicial.png`: resultado do teste de carga inicial.
+- `cenario2-carga-progressiva.png`: resultado do teste de carga progressiva.
+

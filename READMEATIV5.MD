@@ -1,35 +1,31 @@
 # Atividade 05 – Testes de Desempenho com k6
 
-## 1. Objetivo
+## 1. Sobre o projeto
 
-Realizar testes de desempenho na API ServeRest utilizando a ferramenta k6, analisando o comportamento dos endpoints `/produtos` e `/usuarios` em diferentes condições de carga.
+Este projeto foi desenvolvido como parte da atividade de testes de software da Unicesumar, com o objetivo de aplicar conceitos de testes de desempenho utilizando a ferramenta k6 na API ServeRest.
 
-A atividade contempla dois cenários:
-
-- **Cenário 1 – Carga inicial:** execução com 1 usuário virtual durante 30 segundos.
-- **Cenário 2 – Carga progressiva:** aumento gradual da quantidade de usuários virtuais, chegando a 10 VUs e reduzindo a carga ao final.
+Foram implementados dois cenários de teste para avaliar o comportamento dos endpoints de produtos e usuários, considerando diferentes quantidades de usuários virtuais e períodos de execução.
 
 ## 2. Tecnologias utilizadas
 
-- **k6:** ferramenta utilizada para executar os testes de desempenho.
-- **ServeRest:** API utilizada como aplicação de teste.
-- **JavaScript:** linguagem utilizada na implementação dos scripts.
-- **Node.js e NPM:** utilizados para iniciar o ServeRest localmente.
+- JavaScript
+- Node.js
+- NPM
+- ServeRest
+- k6 (Grafana)
 
 ## 3. Estrutura do projeto
 
 ```text
-unicesumar-teste-de-software/
-│
+.
 ├── tests/
 │   └── performance/
 │       ├── carga-inicial.js
 │       └── carga-progressiva.js
-│
 ├── resultados/
-│
 ├── evidencias/
-│
+│   ├── cenario1-carga-inicial.png
+│   └── cenario2-carga-progressiva.png
 ├── PESQUISAATIV5.MD
 ├── RELATORIOATIV5.MD
 └── READMEATIV5.MD
@@ -37,103 +33,145 @@ unicesumar-teste-de-software/
 
 ## 4. Preparação do ambiente
 
-Os testes devem ser executados exclusivamente contra uma instância local do ServeRest.
-
 ### 4.1. Iniciar o ServeRest
 
-Com o Node.js e o NPM instalados, execute:
+Para executar a API localmente, é necessário ter o Node.js e o NPM instalados.
+
+No terminal, execute:
 
 ```bash
 npx serverest@latest
 ```
 
-Aguarde a inicialização da aplicação.
-
-### 4.2. Verificar a API
-
-Com o ServeRest em execução, acesse:
+Após iniciar a aplicação, a API estará disponível em:
 
 ```text
 http://localhost:3000
 ```
 
-Também verifique o endpoint de status:
+Para verificar se os endpoints estão respondendo, acesse:
 
 ```text
-http://localhost:3000/status
+http://localhost:3000/produtos
+http://localhost:3000/usuarios
 ```
 
-A API deverá estar disponível antes da execução dos testes.
+Ambos devem retornar uma resposta em formato JSON.
 
-### 4.3. Instalar o k6
+**Importante:** mantenha o ServeRest em execução durante os testes.
 
-Instale o k6 seguindo as instruções oficiais:
+### 4.2. Instalar e verificar o k6
+
+O k6 pode ser instalado seguindo as instruções da documentação oficial:
 
 https://grafana.com/docs/k6/latest/set-up/install-k6/
 
-Verifique a instalação com:
+Para verificar se a instalação foi realizada corretamente, execute:
 
 ```bash
 k6 version
 ```
 
-## 5. Execução dos testes
+Se a versão instalada for exibida, a ferramenta está pronta para uso.
 
-Com o ServeRest em execução, abra outro terminal na raiz do repositório.
+## 5. Cenários implementados
 
-### 5.1. Cenário 1 – Carga inicial
+### 5.1. Carga inicial
 
-Execute:
+Arquivo: `tests/performance/carga-inicial.js`
+
+O primeiro cenário utiliza um usuário virtual durante 30 segundos.
+
+São realizadas requisições aos seguintes endpoints:
+
+- `GET /produtos`
+- `GET /usuarios`
+
+Os dois endpoints possuem verificações para confirmar o retorno do status HTTP 200.
+
+Thresholds configurados:
+
+- Percentil 95 do tempo de resposta inferior a 1000 ms.
+- Taxa de falhas HTTP inferior a 1%.
+
+Para executar:
 
 ```bash
 k6 run tests/performance/carga-inicial.js
 ```
 
-Esse cenário utiliza 1 usuário virtual durante 30 segundos, realizando requisições aos endpoints `/produtos` e `/usuarios`.
+### 5.2. Carga progressiva
 
-O teste verifica se ambos retornam o código HTTP 200 e avalia os limites de desempenho configurados no script.
+Arquivo: `tests/performance/carga-progressiva.js`
 
-### 5.2. Cenário 2 – Carga progressiva
+O segundo cenário aumenta gradualmente a quantidade de usuários virtuais, seguindo as etapas:
 
-Execute:
+- 1 usuário virtual durante 10 segundos.
+- Aumento para 5 usuários durante 20 segundos.
+- Aumento para 10 usuários durante 20 segundos.
+- Redução para 5 usuários durante 10 segundos.
+- Redução para 0 usuários durante 10 segundos.
+
+Assim como no primeiro cenário, são realizadas requisições aos endpoints de produtos e usuários.
+
+Thresholds configurados:
+
+- Percentil 95 do tempo de resposta inferior a 1500 ms.
+- Taxa de falhas HTTP inferior a 1%.
+
+Para executar:
 
 ```bash
 k6 run tests/performance/carga-progressiva.js
 ```
 
-Esse cenário aumenta gradualmente a quantidade de usuários virtuais até atingir 10 VUs. Ao final, a carga é reduzida progressivamente.
+## 6. Resultados obtidos
 
-O objetivo é observar como o tempo de resposta e a taxa de falhas se comportam conforme aumenta a concorrência.
+Os dois cenários foram executados localmente e apresentaram os seguintes resultados:
 
-## 6. Métricas analisadas
+| Indicador | Carga inicial | Carga progressiva |
+|---|---:|---:|
+| VUs máximos | 1 | 10 |
+| Duração | 30 segundos | 70 segundos |
+| Total de requisições | 60 | 620 |
+| Requisições por segundo | 1,99 | 8,83 |
+| Tempo médio | 1,11 ms | 1,08 ms |
+| p95 | 1,63 ms | 2,09 ms |
+| Falhas HTTP | 0% | 0% |
+| Checks aprovados | 100% | 100% |
 
-Durante os testes, serão observadas as seguintes métricas:
+Os dois cenários tiveram todos os checks aprovados e atenderam aos thresholds configurados.
 
-- **VUs:** quantidade de usuários virtuais ativos.
-- **Duração:** tempo total de execução.
-- **http_reqs:** quantidade total de requisições realizadas.
-- **Req/s:** média de requisições por segundo.
-- **http_req_duration:** tempo de resposta das requisições.
-- **p95:** percentil 95 do tempo de resposta.
-- **http_req_failed:** proporção de requisições malsucedidas.
-- **Checks:** percentual de verificações aprovadas.
+Mesmo com o aumento da carga, os tempos de resposta permaneceram baixos nas condições avaliadas.
 
-Os resultados serão utilizados para comparar os dois cenários e identificar possíveis alterações no comportamento da API.
+Para uma análise mais detalhada, consulte o arquivo `RELATORIOATIV5.MD`.
 
-## 7. Resultados e evidências
+## 7. Pesquisa e documentação
 
-Os resultados reais das execuções serão registrados em `RELATORIOATIV5.MD`.
+O arquivo `PESQUISAATIV5.MD` apresenta os conceitos teóricos relacionados aos testes de desempenho, incluindo:
 
-As capturas de tela dos testes serão armazenadas no diretório `evidencias/`, enquanto eventuais arquivos de saída serão armazenados em `resultados/`.
+- Objetivo dos testes de desempenho.
+- Diferenças entre testes funcionais e testes de carga.
+- Conceito de usuários virtuais (VUs).
+- Diferença entre checks e thresholds.
+- Principais métricas do k6.
+- Importância do percentil 95 (p95).
 
-## 8. Observações
+## 8. Evidências
 
-- Os testes devem ser executados somente contra o ServeRest local.
-- Não utilizar a API pública `serverest.dev` para os testes de desempenho.
-- Os resultados devem corresponder às execuções reais.
-- Os limites definidos nos scripts representam critérios de aprovação estabelecidos para a atividade, não resultados previamente medidos.
+Os resultados das execuções devem ser registrados por meio de capturas de tela e armazenados na pasta `evidencias/`.
 
-## 9. Documentação oficial
+- `cenario1-carga-inicial.png`
+- `cenario2-carga-progressiva.png`
 
-- k6: https://grafana.com/docs/k6/latest/
-- ServeRest: https://github.com/ServeRest/ServeRest
+## 9. Observações
+
+Os testes foram realizados utilizando o ambiente local do ServeRest, com o endereço `http://localhost:3000`.
+
+Os resultados apresentados correspondem às execuções realizadas durante o desenvolvimento da atividade. Eles não representam uma avaliação dos limites máximos da API em ambiente de produção.
+
+## 10. Referências
+
+- Grafana Labs. **Grafana k6 Documentation**. Disponível em: https://grafana.com/docs/k6/latest/. Acesso em: 12 nov. 2026.
+- ServeRest. **Documentação da API**. Disponível em: https://serverest.dev/. Acesso em: 12 nov. 2026.
+
