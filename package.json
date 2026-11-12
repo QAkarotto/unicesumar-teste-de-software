@@ -1,0 +1,21 @@
+{
+  "name": "unicesumar-teste-de-software",
+  "version": "1.0.0",
+  "description": "Automação de Testes com Playwright e ServeRest",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:api": "npx playwright test tests/api",
+    "test:web": "npx playwright test tests/web",
+    "test:ui": "npx playwright test --ui"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^9.0.0",
+    "@playwright/test": "^1.48.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0"
+  }
+}
