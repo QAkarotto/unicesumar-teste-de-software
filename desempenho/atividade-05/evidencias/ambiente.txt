@@ -1,0 +1,9 @@
+Registro: 2026-11-12T14:55:10-03:00
+API: http://localhost:3000
+k6 v2.4.0 (commit/dd9395906d, go1.26.11, linux/amd64)
+v22.22.1
+Linux 7.0.0-43-generic x86_64
+CPUs lógicas disponíveis: 8
+CPU: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz
+Memória total: 14.92 GiB
+Pausas: 1 s após cada GET; 2 GETs por iteração.

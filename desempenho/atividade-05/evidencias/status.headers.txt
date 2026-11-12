@@ -1,0 +1,14 @@
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+x-dns-prefetch-control: off
+x-frame-options: SAMEORIGIN
+strict-transport-security: max-age=15552000; includeSubDomains
+x-download-options: noopen
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+Content-Type: text/html; charset=utf-8
+Content-Length: 15999
+Date: Thu, 12 Nov 2026 17:55:11 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+

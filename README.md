@@ -5,6 +5,10 @@ Repositório utilizado na disciplina de Projeto, Implementação e Teste de Soft
 
 - ## [Mind Map](https://app.xmind.com/share/0ThrBL00) da Disciplina
 
+## Atividades implementadas
+
+- [Atividade 05 — 2º bimestre: testes de desempenho com k6 no ServeRest](desempenho/atividade-05/README.md)
+
 # Materiais Complementares
 - ## Curso de Git e GitHub do Goku
     - [Instruções para configuração de ambiente e atividades das aulas](https://booming-blouse-e16.notion.site/390cf9ad8d508083ad3de85713c19a4a?v=390cf9ad8d5080349a8b000ccb843083&pvs=143)

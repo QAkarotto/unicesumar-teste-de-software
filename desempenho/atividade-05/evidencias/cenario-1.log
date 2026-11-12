@@ -1,0 +1,26 @@
+Início: 2026-11-12T14:55:11-03:00
+Comando: k6 run --no-color --quiet -e BASE_URL=http://localhost:3000 scripts/cenario-1.js
+API: http://localhost:3000
+Duração observada: 30.146 s
+Requisições: 30 | Taxa: 0.995 req/s
+Tempo médio: 3.919 ms | p95: 11.690 ms
+Falhas HTTP: 0.00%
+Checks: 60 aprovados, 0 reprovados
+
+Verificações:
+  GET /produtos: status 200: 15 aprovados, 0 reprovados
+  GET /produtos: lista e quantidade consistentes: 15 aprovados, 0 reprovados
+  GET /usuarios: status 200: 15 aprovados, 0 reprovados
+  GET /usuarios: lista e quantidade consistentes: 15 aprovados, 0 reprovados
+
+Thresholds:
+  PASSOU http_req_failed{endpoint:usuarios}: rate<0.01
+  PASSOU http_req_failed: rate<0.01
+  PASSOU http_req_failed{endpoint:produtos}: rate<0.01
+  PASSOU http_req_duration: avg<300
+  PASSOU http_req_duration: p(95)<500
+  PASSOU http_req_duration{endpoint:produtos}: p(95)<500
+  PASSOU http_req_duration{endpoint:usuarios}: p(95)<500
+  PASSOU checks: rate==1
+Fim: 2026-11-12T14:55:41-03:00
+Código de saída: 0
