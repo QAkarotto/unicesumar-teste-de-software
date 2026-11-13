@@ -1,0 +1,82 @@
+# Ambiente da execução — coletado em 2026-11-12 22:53:14 -0300
+
+Máquina: Intel Xeon E5-2670 v3 @ 2.30GHz (12 núcleos / 24 threads), 31.8 GB de RAM, Windows 10 (10.0.19045).
+ServeRest e k6 rodaram na mesma máquina, sem rede entre eles (localhost).
+
+$ node --version
+v22.16.0
+
+$ k6 version
+k6 v2.4.0 (commit/dd9395906d, go1.26.11, windows/amd64)
+
+$ npx serverest@latest --nodoc   (linha de inicialização)
+ServeRest v3.2.2 está em execução
+
+$ curl -i http://localhost:3000/produtos
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+x-dns-prefetch-control: off
+x-frame-options: SAMEORIGIN
+strict-transport-security: max-age=15552000; includeSubDomains
+x-download-options: noopen
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+Content-Type: application/json; charset=utf-8
+Content-Length: 435
+Date: Fri, 13 Nov 2026 01:53:15 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{
+    "quantidade": 2,
+    "produtos": [
+        {
+            "nome": "Logitech MX Vertical",
+            "preco": 470,
+            "descricao": "Mouse",
+            "quantidade": 382,
+            "_id": "BeeJh5lz3k6kSIzA"
+        },
+        {
+            "nome": "Samsung 60 polegadas",
+            "preco": 5240,
+            "descricao": "TV",
+            "quantidade": 49977,
+            "_id": "K6leHdftCeOJj8BJ"
+        }
+    ]
+}
+
+$ curl -i http://localhost:3000/usuarios
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+x-dns-prefetch-control: off
+x-frame-options: SAMEORIGIN
+strict-transport-security: max-age=15552000; includeSubDomains
+x-download-options: noopen
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+Content-Type: application/json; charset=utf-8
+Content-Length: 253
+Date: Fri, 13 Nov 2026 01:53:15 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{
+    "quantidade": 1,
+    "usuarios": [
+        {
+            "nome": "Fulano da Silva",
+            "email": "fulano@qa.com",
+            "password": "teste",
+            "administrador": "true",
+            "_id": "0uxuPY0cbmQhpEz1"
+        }
+    ]
+}
+
+$ curl -s -o /dev/null -w '%{http_code} %{content_type}' http://localhost:3000/status
+200 text/html; charset=utf-8
+
+$ curl -s -o /dev/null -w '%{http_code} %{content_type}' http://localhost:3000/
+200 text/html; charset=utf-8
